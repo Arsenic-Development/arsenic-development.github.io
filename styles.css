@@ -3,9 +3,9 @@
     --color-primary-dark: #991b1b;
     --color-primary-rgb: 230, 57, 70;
 
-    --color-bg: #000000;
-    --color-bg-soft: #000000;
-    --color-bg-rgb: 0, 0, 0;
+    --color-bg: #0f0f11;
+    --color-bg-soft: #16161a;
+    --color-bg-rgb: 15, 15, 17;
 
     --color-text: #ffffff;
     --color-text-muted: #a0a0a0;
@@ -17,6 +17,9 @@
         rgba(230, 57, 70, 0.2) 0%,
         rgba(10, 10, 10, 0) 70%
     );
+
+    --font-heading: "Roboto", sans-serif;
+    --font-body: "Press Start 2P", monospace;
 
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -66,30 +69,21 @@ html {
 body {
     font-family: var(--font-body);
     background-color: var(--color-bg);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
     color: var(--color-text);
+    line-height: 1.8;
     overflow-x: hidden;
     transition:
         background-color var(--transition-normal),
         color var(--transition-normal);
+    position: relative;
+    font-size: 0.9rem; /* Pixel fonts are usually larger */
 }
 
+/* Remove old global glow effect */
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at top right, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom left, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom right, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at top center, rgba(230, 57, 70, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at bottom center, rgba(230, 57, 70, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at left center, rgba(230, 57, 70, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at right center, rgba(230, 57, 70, 0.05) 0%, transparent 30%);
-    pointer-events: none;
-    z-index: -1;
+    display: none;
 }
 
 h1,
@@ -133,6 +127,31 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle white line between sections */
+    overflow: hidden; /* To contain the glows */
+}
+
+/* Add per-section glows */
+.section::before,
+.section::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.section::before {
+    top: -100px;
+    left: -100px;
+}
+
+.section::after {
+    bottom: -100px;
+    right: -100px;
 }
 
 .text-center {
@@ -213,18 +232,19 @@ img {
     width: auto;
     z-index: 1000;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(var(--color-bg-rgb), 0.5);
+    background: rgba(22, 22, 26, 0.6); /* Slightly lighter than background */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
     border-radius: 50px;
     padding: 0.5rem 1rem;
 }
 
 .header.scrolled {
-    background: rgba(var(--color-bg-rgb), 0.85);
+    background: rgba(22, 22, 26, 0.95);
     box-shadow: none;
     padding: 0.6rem 1.2rem;
-    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .header-container {
@@ -294,6 +314,16 @@ img {
     align-items: center;
     justify-content: center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent;
+    color: var(--color-text);
+    box-shadow: none;
+}
+
+.btn-discord:hover {
+    background-color: rgba(230, 57, 70, 0.1);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: none;
 }
 
 .header.scrolled .btn-discord {
@@ -312,6 +342,7 @@ img {
     gap: 0.5rem;
     font-size: 1rem;
     font-weight: 500;
+    color: var(--color-text);
 }
 
 .lang-dropdown {
@@ -588,9 +619,25 @@ img {
 }
 
 .footer {
-    background-color: #000000;
-    border-top: 1px solid transparent;
+    background-color: var(--color-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     padding-top: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(230, 57, 70, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .footer-container {

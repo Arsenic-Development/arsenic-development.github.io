@@ -8,7 +8,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Silkscreen&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Press+Start+2P&display=swap"
             rel="stylesheet"
         />
         <link
@@ -38,7 +38,13 @@
                                 class="icon-btn text-btn"
                                 id="lang-btn"
                                 aria-label="Select Language"
-
+                                style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: white;"
+                            >
+                                <span id="current-lang">EN 🇺🇸</span>
+                            </button>
+                            <ul class="lang-dropdown">
+                                <li data-lang="en">EN 🇺🇸</li>
+                                <li data-lang="es">ES 🇪🇸</li>
                             </ul>
                         </div>
 
@@ -191,6 +197,7 @@
                             style="--delay: 0.1s"
                         >
                             <div class="stat-number">
+                                <span class="counter" data-target="1">1</span>
                             </div>
                             <div class="stat-label" data-i18n="stat_projects">
                                 Proyectos
