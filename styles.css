@@ -66,17 +66,24 @@ html {
     font-size: 16px;
 }
 
+/* Minecraft Day/Night Cycle (20 minutes = 1200 seconds) */
+@keyframes skyCycle {
+    0%, 10% { background-color: #78A7FF; } /* Day */
+    20%, 30% { background-color: #c97164; } /* Sunset */
+    40%, 60% { background-color: #0b0d17; } /* Night */
+    70%, 80% { background-color: #ff9d76; } /* Sunrise */
+    90%, 100% { background-color: #78A7FF; } /* Day */
+}
+
 body {
     font-family: var(--font-body);
-    background-color: var(--color-bg);
+    background-color: #0b0d17;
+    animation: skyCycle 1200s infinite linear;
     color: var(--color-text);
     line-height: 1.8;
     overflow-x: hidden;
-    transition:
-        background-color var(--transition-normal),
-        color var(--transition-normal);
     position: relative;
-    font-size: 0.75rem;
+    font-size: 0.55rem; /* Even smaller pixel font size */
 }
 
 body::before {
@@ -124,24 +131,13 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: none;
     overflow: hidden;
 }
 
 .section::before,
 .section::after {
-    content: "";
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(
-        circle,
-        rgba(230, 57, 70, 0.1) 0%,
-        transparent 70%
-    );
-    border-radius: 50%;
-    z-index: -1;
-    pointer-events: none;
+    display: none;
 }
 
 .section::before {
@@ -229,7 +225,8 @@ img {
     top: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
+    width: 90%;
+    max-width: 1200px;
     z-index: 1000;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(22, 22, 26, 0.6);
@@ -237,20 +234,21 @@ img {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
 }
 
 .header.scrolled {
     background: rgba(22, 22, 26, 0.95);
     box-shadow: none;
-    padding: 0.6rem 1.2rem;
+    padding: 0.6rem 1.5rem;
     border-color: rgba(255, 255, 255, 0.15);
 }
 
 .header-container {
     display: flex;
     align-items: center;
-    transition: gap 0.5s ease;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .logo {
@@ -295,13 +293,13 @@ img {
     white-space: nowrap;
     opacity: 0;
     max-width: 0;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header.scrolled .discord-text {
     display: inline-block;
     opacity: 1;
-    max-width: 100px;
+    max-width: 150px;
     margin-left: 0.5rem;
 }
 
@@ -313,7 +311,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
     background: transparent;
     color: var(--color-text);
     box-shadow: none;
@@ -324,6 +322,9 @@ img {
     color: var(--color-primary);
     transform: translateY(-2px);
     box-shadow: none;
+}
+.btn-discord:hover .discord-text {
+    color: var(--color-primary);
 }
 
 .header.scrolled .btn-discord {
@@ -391,45 +392,36 @@ img {
 }
 
 .bg-gradient-orb {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(230, 57, 70, 0.08) 0%,
-            transparent 40%
-        ),
-        radial-gradient(
-            circle at center left,
-            rgba(230, 57, 70, 0.05) 0%,
-            transparent 30%
-        );
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
+    display: none;
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
     max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.1;
     margin-bottom: var(--spacing-md);
     letter-spacing: -1px;
+    text-align: center;
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: 1rem;
     color: var(--color-text-muted);
     margin-bottom: var(--spacing-lg);
     max-width: 600px;
-    margin-inline: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .scroll-indicator {
@@ -516,15 +508,9 @@ img {
     transform: scaleX(1);
 }
 
-.fa-discord,
-.fa-github,
-.fa-bars,
-.fa-times,
-.fa-users,
-.fa-code,
-.fa-calendar-check,
-.fa-headset {
+.fa-discord, .fa-github, .fa-bars, .fa-times, .fa-users, .fa-code, .fa-calendar-check, .fa-headset {
     image-rendering: pixelated;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.5); /* Add blocky shadow to simulate pixel art on fonts */
 }
 
 .feature-icon {
@@ -636,29 +622,15 @@ img {
 }
 
 .footer {
-    background-color: var(--color-bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
+    border-top: none;
     padding-top: var(--spacing-xl);
     position: relative;
     overflow: hidden;
 }
 
 .footer::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(
-        circle,
-        rgba(230, 57, 70, 0.08) 0%,
-        transparent 70%
-    );
-    border-radius: 50%;
-    bottom: -300px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: -1;
-    pointer-events: none;
+    display: none;
 }
 
 .footer-container {
