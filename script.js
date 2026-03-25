@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext("2d");
     let width, height;
     let particles = [];
+    const gridSize = 6;
 
     function resize() {
       width = window.innerWidth;
@@ -175,14 +176,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.size = Math.random() > 0.8 ? 4 : 2;
+        const gx = Math.floor((Math.random() * width) / gridSize) * gridSize;
+        const gy = Math.floor((Math.random() * height) / gridSize) * gridSize;
+        this.x = gx;
+        this.y = gy;
+        this.size = Math.random() > 0.85 ? gridSize : Math.max(2, gridSize - 2);
         this.alpha = 0;
-        this.targetAlpha = Math.random() * 0.4 + 0.1;
-        this.fadeSpeed = Math.random() * 0.005 + 0.002;
+        this.targetAlpha = Math.random() * 0.55 + 0.15;
+        this.fadeSpeed = Math.random() * 0.01 + 0.004;
         this.state = "fadeIn";
-        this.holdTime = Math.random() * 100 + 50;
+        this.holdTime = Math.random() * 60 + 20;
         this.holdCounter = 0;
       }
 
@@ -212,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 85; i++) {
       particles.push(new PixelParticle());
       particles[i].alpha = Math.random() * particles[i].targetAlpha;
       particles[i].state = Math.random() > 0.5 ? "fadeIn" : "fadeOut";

@@ -4,13 +4,13 @@ const translations = {
     join_discord_text: "Unirse a Discord",
     hero_title: "Arsenic <span class='text-gradient'>Development</span>",
     hero_subtitle:
-      "Arsenic Development es un estudio donde desarrollamos plugins de Minecraft.",
+      "Un estudio que desarrolla plugins de Minecraft y configuraciones listas para usar diseñadas para competir.",
     join_discord_cta: "Únete a nuestra Comunidad",
     features_title:
       "Nuestras <span class='text-gradient'>Características</span>",
     feature_1_title: "Comunidad Activa",
     feature_1_desc:
-      "Conecta con cientos de desarrolladores apasionados dispuestos a colaborar y compartir conocimientos.",
+      "Conecta con dueños de servidores y personas apasionadas por construir servidores.",
     feature_2_title: "Recursos Exclusivos",
     feature_2_desc:
       "Accede a repositorios, templates y herramientas premium creadas por nuestros expertos.",
@@ -19,7 +19,7 @@ const translations = {
       "Participa en hackathons, workshops y sesiones de live coding semanales.",
     feature_4_title: "Soporte Técnico",
     feature_4_desc:
-      "Resuelve tus dudas rápidamente con la ayuda de mentores y desarrolladores experimentados.",
+      "Obtén respuestas instantáneas a tus preguntas en Discord - ~20 minutos de tiempo de respuesta.",
     stat_members: "Miembros",
     stat_channels: "Canales",
     stat_events: "Eventos",
@@ -40,12 +40,12 @@ const translations = {
     join_discord_text: "Join Discord",
     hero_title: "Arsenic <span class='text-gradient'>Development</span>",
     hero_subtitle:
-      "Arsenic Development is a studio where we develop Minecraft plugins.",
+      "A studio that develops Minecraft plugins and ready-to-use setups designed to compete.",
     join_discord_cta: "Join our Community",
     features_title: "Our <span class='text-gradient'>Features</span>",
     feature_1_title: "Active Community",
     feature_1_desc:
-      "Connect with hundreds of passionate developers ready to collaborate and share knowledge.",
+      "Connect with server owners and people who are passionate about building servers.",
     feature_2_title: "Exclusive Resources",
     feature_2_desc:
       "Access premium repositories, templates, and tools created by our experts.",
@@ -54,7 +54,7 @@ const translations = {
       "Participate in weekly hackathons, workshops, and live coding sessions.",
     feature_4_title: "Technical Support",
     feature_4_desc:
-      "Quickly resolve your doubts with the help of mentors and experienced developers.",
+      "Get instant answers to your questions on Discord - ~20 minutes response time.",
     stat_members: "Members",
     stat_channels: "Channels",
     stat_events: "Events",
