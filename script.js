@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("lang", lang);
     document.documentElement.lang = lang;
+    currentLangText.textContent = lang.toUpperCase();
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.getAttribute("data-i18n");
@@ -151,4 +152,81 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch((error) => console.error("Error fetching Discord stats:", error));
+
+  const canvas = document.getElementById("pixel-canvas");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    let particles = [];
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    class PixelParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() > 0.8 ? 4 : 2;
+        this.alpha = 0;
+        this.targetAlpha = Math.random() * 0.4 + 0.1;
+        this.fadeSpeed = Math.random() * 0.005 + 0.002;
+        this.state = "fadeIn";
+        this.holdTime = Math.random() * 100 + 50;
+        this.holdCounter = 0;
+      }
+
+      update() {
+        if (this.state === "fadeIn") {
+          this.alpha += this.fadeSpeed;
+          if (this.alpha >= this.targetAlpha) {
+            this.alpha = this.targetAlpha;
+            this.state = "hold";
+          }
+        } else if (this.state === "hold") {
+          this.holdCounter++;
+          if (this.holdCounter >= this.holdTime) {
+            this.state = "fadeOut";
+          }
+        } else if (this.state === "fadeOut") {
+          this.alpha -= this.fadeSpeed;
+          if (this.alpha <= 0) {
+            this.reset();
+          }
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.fillRect(this.x, this.y, this.size, this.size);
+      }
+    }
+
+    for (let i = 0; i < 40; i++) {
+      particles.push(new PixelParticle());
+      particles[i].alpha = Math.random() * particles[i].targetAlpha;
+      particles[i].state = Math.random() > 0.5 ? "fadeIn" : "fadeOut";
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
 });

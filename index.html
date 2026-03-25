@@ -22,6 +22,8 @@
             <div class="spinner"></div>
         </div>
 
+        <canvas id="pixel-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none;"></canvas>
+
         <header class="header">
             <div class="header-container">
                 <a href="#" class="logo">
@@ -40,11 +42,11 @@
                                 aria-label="Select Language"
                                 style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: white;"
                             >
-                                <span id="current-lang">EN 🇺🇸</span>
+                                <span id="current-lang">EN</span>
                             </button>
                             <ul class="lang-dropdown">
-                                <li data-lang="en">EN 🇺🇸</li>
-                                <li data-lang="es">ES 🇪🇸</li>
+                                <li data-lang="en">EN</li>
+                                <li data-lang="es">ES</li>
                             </ul>
                         </div>
 
@@ -78,19 +80,6 @@
                         Arsenic Development is a studio where we develop
                         Minecraft plugins.
                     </p>
-                    <div class="hero-cta">
-                        <a
-                            href="https://discord.gg/BewvqAe3jb"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-primary btn-large"
-                        >
-                            <i class="fa-brands fa-discord"></i>
-                            <span data-i18n="join_discord_cta"
-                                >Únete a nuestra Comunidad</span
-                            >
-                        </a>
-                    </div>
                 </div>
 
                 <a href="#features" class="scroll-indicator">

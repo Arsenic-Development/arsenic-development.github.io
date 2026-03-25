@@ -18,7 +18,7 @@
         rgba(10, 10, 10, 0) 70%
     );
 
-    --font-heading: "Roboto", sans-serif;
+    --font-heading: "Press Start 2P", monospace;
     --font-body: "Press Start 2P", monospace;
 
     --spacing-sm: 0.5rem;
@@ -69,8 +69,6 @@ html {
 body {
     font-family: var(--font-body);
     background-color: var(--color-bg);
-    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
     color: var(--color-text);
     line-height: 1.8;
     overflow-x: hidden;
@@ -78,10 +76,9 @@ body {
         background-color var(--transition-normal),
         color var(--transition-normal);
     position: relative;
-    font-size: 0.9rem; /* Pixel fonts are usually larger */
+    font-size: 0.75rem;
 }
 
-/* Remove old global glow effect */
 body::before {
     display: none;
 }
@@ -127,18 +124,21 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle white line between sections */
-    overflow: hidden; /* To contain the glows */
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
 }
 
-/* Add per-section glows */
 .section::before,
 .section::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+        circle,
+        rgba(230, 57, 70, 0.1) 0%,
+        transparent 70%
+    );
     border-radius: 50%;
     z-index: -1;
     pointer-events: none;
@@ -232,10 +232,10 @@ img {
     width: auto;
     z-index: 1000;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(22, 22, 26, 0.6); /* Slightly lighter than background */
+    background: rgba(22, 22, 26, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50px;
     padding: 0.5rem 1rem;
 }
@@ -394,17 +394,23 @@ img {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at top right, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom left, rgba(230, 57, 70, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at bottom right, rgba(230, 57, 70, 0.08) 0%, transparent 40%);
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(230, 57, 70, 0.08) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at center left,
+            rgba(230, 57, 70, 0.05) 0%,
+            transparent 30%
+        );
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
     pointer-events: none;
 }
-
 
 .hero-content {
     position: relative;
@@ -510,6 +516,17 @@ img {
     transform: scaleX(1);
 }
 
+.fa-discord,
+.fa-github,
+.fa-bars,
+.fa-times,
+.fa-users,
+.fa-code,
+.fa-calendar-check,
+.fa-headset {
+    image-rendering: pixelated;
+}
+
 .feature-icon {
     font-size: 2.5rem;
     color: var(--color-primary);
@@ -544,9 +561,9 @@ img {
 }
 
 .stat-number {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 800;
+    font-family: var(--font-body);
+    font-size: 2.5rem;
+    font-weight: 400;
     color: var(--color-text);
 }
 
@@ -627,11 +644,15 @@ img {
 }
 
 .footer::before {
-    content: '';
+    content: "";
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(230, 57, 70, 0.08) 0%, transparent 70%);
+    background: radial-gradient(
+        circle,
+        rgba(230, 57, 70, 0.08) 0%,
+        transparent 70%
+    );
     border-radius: 50%;
     bottom: -300px;
     left: 50%;
