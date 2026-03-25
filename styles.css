@@ -68,12 +68,22 @@ html {
 
 body {
     font-family: var(--font-body);
-    background-color: #0b0d17;
+    background-color: var(--color-bg);
     color: var(--color-text);
     line-height: 1.8;
     overflow-x: hidden;
     position: relative;
     font-size: 0.55rem;
+}
+
+body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 body::before {
@@ -208,19 +218,20 @@ img {
     width: 90%;
     max-width: 1200px;
     z-index: 1000;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
     background: rgba(22, 22, 26, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    padding: 0.35rem 1.1rem;
+    border-radius: 40px;
+    padding: 0.25rem 0.9rem;
 }
 
 .header.scrolled {
     background: rgba(22, 22, 26, 0.95);
     box-shadow: none;
-    padding: 0.25rem 1.1rem;
     border-color: rgba(255, 255, 255, 0.15);
 }
 
@@ -233,7 +244,8 @@ img {
 }
 
 .logo {
-    grid-column: 2;
+    grid-column: 3;
+    justify-self: end;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -260,10 +272,10 @@ img {
 }
 
 .nav-menu {
-    grid-column: 3;
+    grid-column: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .nav-controls {
@@ -273,20 +285,22 @@ img {
 }
 
 .discord-text {
-    display: none;
+    display: inline-block;
     white-space: nowrap;
     opacity: 0;
-    max-width: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
     transition:
-        max-width 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        width 0.25s ease,
+        opacity 0.25s ease;
 }
 
 .header.scrolled .discord-text {
-    display: none;
-    opacity: 0;
-    max-width: 0;
-    margin-left: 0;
+    opacity: 1;
+    visibility: visible;
+    width: 96px;
+    margin-left: 0.4rem;
 }
 
 .btn-discord {
@@ -329,11 +343,15 @@ img {
 
 .btn-discord:hover::after {
     transform: scaleX(1);
-    transform-origin: left;
+    transform-origin: right;
 }
 
 .btn-discord:hover .discord-text {
     color: var(--color-primary);
+}
+
+.btn-discord:not(:hover)::after {
+    transform-origin: left;
 }
 
 .header.scrolled .btn-discord {
@@ -401,7 +419,14 @@ img {
     padding-top: 80px;
     overflow: hidden;
     position: relative;
-    background-color: var(--color-bg);
+    background-color: transparent;
+}
+
+.features,
+.stats,
+.testimonials,
+.footer {
+    background-color: transparent;
 }
 
 .bg-gradient-orb {
@@ -445,33 +470,46 @@ img {
     z-index: 1;
     opacity: 0.7;
     transition: opacity var(--transition-fast);
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: rgba(22, 22, 26, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.scroll-indicator:hover {
-    opacity: 1;
-}
-
-.mouse {
-    width: 28px;
-    height: 42px;
-    border: 2px solid var(--color-text);
-    border-radius: 0;
-    display: block;
-    position: relative;
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
-}
-
+.mouse,
 .wheel {
-    width: 6px;
-    height: 6px;
-    background: var(--color-primary);
-    border-radius: 0;
-    display: block;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scrollWheel 2s ease infinite;
+    display: none;
+}
+
+.scroll-indicator::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--color-text);
+    border-bottom: 2px solid var(--color-text);
+    transform: rotate(45deg);
+    animation: scrollChevron 1.6s ease infinite;
+    opacity: 0.9;
+}
+
+@keyframes scrollChevron {
+    0% {
+        transform: translateY(-3px) rotate(45deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(2px) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-3px) rotate(45deg);
+        opacity: 0.3;
+    }
 }
 
 @keyframes scrollWheel {
@@ -583,7 +621,7 @@ img {
 
 .stat-label {
     color: #a0a0a0;
-    font-size: 1.125rem;
+    font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-top: var(--spacing-sm);
@@ -707,21 +745,45 @@ img {
 }
 
 .social-icons a {
-    display: flex;
+    position: relative;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--color-bg);
+    width: auto;
+    height: auto;
+    padding: 0.25rem;
+    border-radius: 0;
+    background-color: transparent;
     color: var(--color-text);
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast);
 }
 
 .social-icons a:hover {
-    background-color: var(--color-primary);
-    color: #fff;
-    transform: translateY(-3px);
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: none;
+}
+
+.social-icons a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.2s ease;
+}
+
+.social-icons a:hover::after {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+.social-icons a:not(:hover)::after {
+    transform-origin: left;
 }
 
 .footer-bottom {
