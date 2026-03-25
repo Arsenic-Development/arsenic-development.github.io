@@ -69,4 +69,41 @@ const translations = {
     footer_social: "Follow Us",
     footer_rights: "All rights reserved.",
   },
+<<<<<<< HEAD
+=======
+  pt: {
+    join_discord: "Entrar no Discord",
+    join_discord_text: "Entrar no Discord",
+    hero_title: "Arsenic <span class='text-gradient'>Development</span>",
+    hero_subtitle:
+      "Arsenic Development é um estúdio onde desenvolvemos plugins para Minecraft.",
+    join_discord_cta: "Junte-se à nossa Comunidade",
+    features_title: "Nossos <span class='text-gradient'>Recursos</span>",
+    feature_1_title: "Comunidade Ativa",
+    feature_1_desc:
+      "Conecte-se com centenas de desenvolvedores apaixonados prontos para colaborar e compartilhar conhecimento.",
+    feature_2_title: "Recursos Exclusivos",
+    feature_2_desc:
+      "Acesse repositórios, modelos e ferramentas premium criadas por nossos especialistas.",
+    feature_3_title: "Eventos Regulares",
+    feature_3_desc:
+      "Participe de hackathons semanais, workshops e sessões de live coding.",
+    feature_4_title: "Suporte Técnico",
+    feature_4_desc:
+      "Resolva suas dúvidas rapidamente com a ajuda de mentores e desenvolvedores experientes.",
+    stat_members: "Membros",
+    stat_channels: "Canais",
+    stat_events: "Eventos",
+    stat_projects: "Projetos",
+    testimonials_title:
+      "O que a <span class='text-gradient'>Comunidade</span> diz",
+    footer_desc: "Construído para o desempenho, projetado para a competição.",
+    footer_links: "Links Rápidos",
+    link_home: "Início",
+    link_features: "Recursos",
+    link_testimonials: "Depoimentos",
+    footer_social: "Siga-nos",
+    footer_rights: "Todos os direitos reservados.",
+  },
+>>>>>>> 697f980765b9e028a75d09271f48245068c8cb31
 };

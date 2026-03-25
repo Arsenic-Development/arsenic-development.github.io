@@ -43,6 +43,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+<<<<<<< HEAD
+=======
+  const themeToggle = document.getElementById("theme-toggle");
+  const htmlEl = document.documentElement;
+  const icon = themeToggle.querySelector("i");
+
+  const savedTheme = localStorage.getItem("theme");
+  const systemPrefersDark = window.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+
+  if (savedTheme) {
+    htmlEl.setAttribute("data-theme", savedTheme);
+    updateThemeIcon(savedTheme);
+  } else if (!systemPrefersDark) {
+    htmlEl.setAttribute("data-theme", "light");
+    updateThemeIcon("light");
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = htmlEl.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    htmlEl.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeIcon(newTheme);
+  });
+
+  function updateThemeIcon(theme) {
+    if (theme === "dark") {
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
+    } else {
+      icon.classList.remove("fa-sun");
+      icon.classList.add("fa-moon");
+    }
+  }
+>>>>>>> 697f980765b9e028a75d09271f48245068c8cb31
 
   const langSelector = document.querySelector(".lang-selector");
   const langBtn = document.getElementById("lang-btn");
@@ -74,7 +112,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!translations[lang]) return;
 
     localStorage.setItem("lang", lang);
+<<<<<<< HEAD
     currentLangText.textContent = lang === "en" ? "EN 🇺🇸" : "ES 🇪🇸";
+=======
+    currentLangText.textContent = lang.toUpperCase();
+>>>>>>> 697f980765b9e028a75d09271f48245068c8cb31
     document.documentElement.lang = lang;
 
     document.querySelectorAll("[data-i18n]").forEach((el) => {
