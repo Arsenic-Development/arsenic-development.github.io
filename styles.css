@@ -12,11 +12,9 @@
     --color-border: #2a2a2a;
 
     --gradient-primary: linear-gradient(135deg, #ff4d4d 0%, #8b0000 100%);
-    --gradient-glow: radial-gradient(
-        circle,
-        rgba(230, 57, 70, 0.2) 0%,
-        rgba(10, 10, 10, 0) 70%
-    );
+    --gradient-glow: radial-gradient(circle,
+            rgba(230, 57, 70, 0.2) 0%,
+            rgba(10, 10, 10, 0) 70%);
 
     --font-heading: "Press Start 2P", monospace;
     --font-body: "Press Start 2P", monospace;
@@ -160,12 +158,20 @@ img {
 .section-separator {
     width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        rgba(255, 255, 255, 0) 100%
-    );
-    margin: 40px auto;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    margin: 80px auto;
+}
+
+.logo-dot {
+    color: var(--color-primary);
+    display: inline-block;
+    vertical-align: baseline;
+    position: relative;
+    top: 2px;
+    line-height: 0;
 }
 
 .btn {
@@ -242,7 +248,7 @@ img {
 
 .header.scrolled {
     background: rgba(22, 22, 26, 0.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -309,7 +315,8 @@ img {
 .header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 155px; /* Increased width to prevent clipping */
+    width: 180px;
+    /* Increased width to prevent clipping "Join Discord" */
     margin-left: 0.4rem;
 }
 
@@ -522,7 +529,7 @@ img {
     width: 4px;
     height: 4px;
     background: var(--color-text);
-    box-shadow: 
+    box-shadow:
         -4px 0 0 var(--color-text),
         4px 0 0 var(--color-text),
         -8px 0 0 var(--color-text),
@@ -540,10 +547,12 @@ img {
         transform: translateY(-3px);
         opacity: 0.3;
     }
+
     50% {
         transform: translateY(2px);
         opacity: 1;
     }
+
     100% {
         transform: translateY(-3px);
         opacity: 0.3;
@@ -794,6 +803,33 @@ img {
     margin-bottom: var(--spacing-lg);
 }
 
+.footer-links a,
+.footer-social a {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+.footer-links a::after,
+.footer-social a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.footer-links a:hover::after,
+.footer-social a:hover::after {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
 .footer-brand {
     display: flex;
     flex-direction: column;
@@ -845,23 +881,8 @@ img {
     font-size: 0.9rem;
 }
 
-.footer-links a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 1px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--color-primary);
-    transition: width var(--transition-fast);
-}
-
 .footer-links a:hover {
     color: var(--color-primary);
-}
-
-.footer-links a:hover::after {
-    width: 100%;
 }
 
 .social-icons {
@@ -893,28 +914,6 @@ img {
     background-color: transparent;
     color: var(--color-primary);
     transform: none;
-}
-
-.social-icons a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px;
-    height: 2px;
-    background: var(--color-primary);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.2s ease;
-}
-
-.social-icons a:hover::after {
-    transform: scaleX(1);
-    transform-origin: right;
-}
-
-.social-icons a:not(:hover)::after {
-    transform-origin: left;
 }
 
 .footer-bottom {
