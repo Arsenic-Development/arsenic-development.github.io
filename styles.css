@@ -125,7 +125,7 @@ img {
 }
 
 .section {
-    padding: calc(var(--spacing-xl) * 0.8) 0;
+    padding: calc(var(--spacing-xl) * 1.2) 0;
     position: relative;
     min-height: auto;
     display: flex;
@@ -244,8 +244,8 @@ img {
 }
 
 .logo {
-    grid-column: 3;
-    justify-self: end;
+    grid-column: 1;
+    justify-self: start;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -253,7 +253,7 @@ img {
     font-size: 1rem;
     font-weight: 800;
     letter-spacing: -0.5px;
-    margin-right: 0;
+    margin-left: 0;
     white-space: nowrap;
     opacity: 1;
     max-width: 200px;
@@ -277,10 +277,10 @@ img {
 }
 
 .nav-menu {
-    grid-column: 1;
+    grid-column: 3;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .nav-controls {
@@ -304,7 +304,7 @@ img {
 .header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 96px;
+    width: 110px;
     margin-left: 0.4rem;
 }
 
@@ -521,21 +521,15 @@ img {
         0% 0%,
         100% 0%,
         100% 25%,
-        75% 25%,
-        75% 50%,
-        100% 50%,
-        100% 75%,
+        50% 25%,
+        50% 75%,
         75% 75%,
         75% 100%,
-        50% 100%,
-        50% 75%,
-        25% 75%,
         25% 100%,
-        0% 100%,
-        0% 75%,
         25% 75%,
-        25% 50%,
-        0% 50%
+        50% 75%,
+        50% 25%,
+        0% 25%
     );
     animation: scrollPixelArrow 1.6s ease infinite;
     opacity: 0.9;

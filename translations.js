@@ -26,7 +26,7 @@ const translations = {
     feature_4_title: "Soporte Técnico",
     feature_4_desc:
       "Obtén respuestas instantáneas a tus preguntas en Discord - ~20 minutos de tiempo de respuesta.",
-    stats_title: "Nuestras estadísticas",
+    stats_title: "<span style='color: white;'>Nuestras</span> <span style='color: red;'>estadísticas</span>",
     stat_members: "Miembros",
     stat_channels: "Canales",
     stat_events: "Eventos",
@@ -71,7 +71,7 @@ const translations = {
     feature_4_title: "Technical Support",
     feature_4_desc:
       "Get instant answers to your questions on Discord - ~20 minutes response time.",
-    stats_title: "Our stats",
+    stats_title: "<span style='color: white;'>Our</span> <span class='text-gradient'>stats</span>",
     stat_members: "Members",
     stat_channels: "Channels",
     stat_events: "Events",
