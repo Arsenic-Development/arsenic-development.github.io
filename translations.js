@@ -5,9 +5,15 @@ const translations = {
     hero_title: "Arsenic <span class='text-gradient'>Development</span>",
     hero_subtitle:
       "Un estudio que desarrolla plugins de Minecraft y configuraciones listas para usar diseñadas para competir.",
+    scroll_hint: "Scrollea para empezar tu aventura",
     join_discord_cta: "Únete a nuestra Comunidad",
     features_title:
       "Nuestras <span class='text-gradient'>Características</span>",
+    offer_title: "¿Qué ofrecemos?",
+    offer_1_title: "Plugins de calidad",
+    offer_1_desc: "Plugins de Minecraft optimizados y listos para competir.",
+    offer_2_title: "Setups de calidad",
+    offer_2_desc: "Setups listos para usar diseñados para competir.",
     feature_1_title: "Comunidad Activa",
     feature_1_desc:
       "Conecta con dueños de servidores y personas apasionadas por construir servidores.",
@@ -28,8 +34,9 @@ const translations = {
     testimonials_title:
       "Lo que dice la <span class='text-gradient'>Comunidad</span>",
     footer_desc:
-      "Construido para el rendimiento, diseñado para la competición.",
+      "\"Construido para el rendimiento, diseñado para la competición.\"",
     footer_links: "Enlaces Rápidos",
+    link_tos: "ToS",
     link_home: "Inicio",
     link_features: "Características",
     link_testimonials: "Testimonios",
@@ -42,8 +49,14 @@ const translations = {
     hero_title: "Arsenic <span class='text-gradient'>Development</span>",
     hero_subtitle:
       "A studio that develops Minecraft plugins and ready-to-use setups designed to compete.",
+    scroll_hint: "Scroll to start your adventure",
     join_discord_cta: "Join our Community",
     features_title: "Our <span class='text-gradient'>Features</span>",
+    offer_title: "What we offer?",
+    offer_1_title: "Quality Plugins",
+    offer_1_desc: "High-performance Minecraft plugins built to last.",
+    offer_2_title: "Quality Setups",
+    offer_2_desc: "Ready-to-use server setups designed to compete.",
     feature_1_title: "Active Community",
     feature_1_desc:
       "Connect with server owners and people who are passionate about building servers.",
@@ -63,8 +76,9 @@ const translations = {
     stat_projects: "Projects",
     testimonials_title:
       "What the <span class='text-gradient'>Community</span> says",
-    footer_desc: "Built for performance, designed for competition.",
+    footer_desc: "\"Built for performance, designed for competition.\"",
     footer_links: "Quick Links",
+    link_tos: "ToS",
     link_home: "Home",
     link_features: "Features",
     link_testimonials: "Testimonials",

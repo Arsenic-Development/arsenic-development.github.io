@@ -16,6 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const scrollIndicator = document.querySelector(".scroll-indicator");
+  if (scrollIndicator) {
+    scrollIndicator.addEventListener("click", (e) => {
+      const targetSelector = scrollIndicator.getAttribute("data-target");
+      if (!targetSelector) return;
+      const targetEl = document.querySelector(targetSelector);
+      if (!targetEl) return;
+      e.preventDefault();
+      targetEl.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
   const mobileToggle = document.querySelector(".mobile-toggle");
   const navMenu = document.querySelector(".nav-menu");
 

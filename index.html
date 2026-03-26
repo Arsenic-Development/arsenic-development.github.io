@@ -82,11 +82,46 @@
                     </p>
                 </div>
 
-                <a href="#features" class="scroll-indicator">
+                <div class="scroll-hint" data-i18n="scroll_hint">
+                    Scroll to start your adventure
+                </div>
+                <button type="button" class="scroll-indicator" data-target="#offer" aria-label="Scroll to features">
                     <span class="mouse">
                         <span class="wheel"></span>
                     </span>
-                </a>
+                </button>
+            </section>
+
+            <section id="offer" class="offer section">
+                <div class="container">
+                    <h2
+                        class="section-title text-center animate-on-scroll slide-up"
+                        data-i18n="offer_title"
+                    >
+                        What we offer?
+                    </h2>
+
+                    <div class="offer-grid">
+                        <div class="offer-card animate-on-scroll zoom-in">
+                            <div class="offer-icon" aria-hidden="true"></div>
+                            <h3 data-i18n="offer_1_title">Quality Plugins</h3>
+                            <p data-i18n="offer_1_desc">
+                                High-performance Minecraft plugins built to last.
+                            </p>
+                        </div>
+
+                        <div
+                            class="offer-card animate-on-scroll zoom-in"
+                            style="--delay: 0.2s"
+                        >
+                            <div class="offer-icon" aria-hidden="true"></div>
+                            <h3 data-i18n="offer_2_title">Quality Setups</h3>
+                            <p data-i18n="offer_2_desc">
+                                Ready-to-use server setups designed to compete.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section id="features" class="features section">
@@ -135,7 +170,7 @@
                         class="section-title text-center animate-on-scroll slide-up"
                         data-i18n="stats_title"
                     >
-                        Our stats
+                        Our <span class="text-gradient">stats</span>
                     </h2>
                     <div class="stats-grid">
                         <div class="stat-item animate-on-scroll zoom-in">
@@ -169,9 +204,12 @@
         <footer class="footer">
             <div class="container footer-container">
                 <div class="footer-brand">
-                    <a href="#" class="logo"
-                        >Arsenic<span class="logo-accent">.Dev</span></a
-                    >
+                    <a href="#" class="footer-logo">
+                        <img src="3.png" alt="Arsenic.Dev Logo" class="footer-logo-img" />
+                        <span class="footer-logo-text"
+                            >Arsenic<span class="logo-accent">.Dev</span></span
+                        >
+                    </a>
                     <p class="footer-desc" data-i18n="footer_desc">
                         Built for performance, designed for competition.
                     </p>
@@ -188,6 +226,9 @@
                                 >Features</a
                             >
                         </li>
+                        <li>
+                            <a href="#" data-i18n="link_tos">ToS</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -199,7 +240,9 @@
                             aria-label="GitHub"
                             ><i class="fa-brands fa-github"></i
                         ></a>
-                        <a href="hhttps://discord.gg/BewvqAe3jb aria-label="Discord"
+                        <a
+                            href="https://discord.gg/BewvqAe3jb"
+                            aria-label="Discord"
                             ><i class="fa-brands fa-discord"></i
                         ></a>
                     </div>
