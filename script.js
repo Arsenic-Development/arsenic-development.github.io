@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("loader");
-  setTimeout(() => {
-    loader.style.opacity = "0";
-    setTimeout(() => {
-      loader.style.display = "none";
-    }, 500);
-  }, 1000);
-
   const header = document.querySelector(".header");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
@@ -27,33 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
       targetEl.scrollIntoView({ behavior: "smooth" });
     });
   }
-
-  const mobileToggle = document.querySelector(".mobile-toggle");
-  const navMenu = document.querySelector(".nav-menu");
-
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-      const icon = mobileToggle.querySelector("i");
-      if (navMenu.classList.contains("active")) {
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-times");
-      } else {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-bars");
-      }
-    });
-  }
-
-  document.querySelectorAll(".nav-menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (navMenu) navMenu.classList.remove("active");
-      if (mobileToggle) {
-        mobileToggle.querySelector("i").classList.remove("fa-times");
-        mobileToggle.querySelector("i").classList.add("fa-bars");
-      }
-    });
-  });
 
   const langSelector = document.querySelector(".lang-selector");
   const langBtn = document.getElementById("lang-btn");

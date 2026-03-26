@@ -125,7 +125,7 @@ img {
 }
 
 .section {
-    padding: var(--spacing-lg) 0;
+    padding: calc(var(--spacing-xl) * 0.8) 0;
     position: relative;
     min-height: auto;
     display: flex;
@@ -514,28 +514,28 @@ img {
 
 .scroll-indicator::before {
     content: "";
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: var(--color-text);
     clip-path: polygon(
-        25% 0%,
-        25% 40%,
-        0% 40%,
-        0% 60%,
-        25% 60%,
-        25% 100%,
-        45% 100%,
-        45% 60%,
-        75% 60%,
+        0% 0%,
+        100% 0%,
+        100% 25%,
+        75% 25%,
+        75% 50%,
+        100% 50%,
+        100% 75%,
+        75% 75%,
         75% 100%,
-        100% 100%,
-        100% 40%,
-        75% 40%,
-        75% 0%,
-        55% 0%,
-        55% 40%,
-        45% 40%,
-        45% 0%
+        50% 100%,
+        50% 75%,
+        25% 75%,
+        25% 100%,
+        0% 100%,
+        0% 75%,
+        25% 75%,
+        25% 50%,
+        0% 50%
     );
     animation: scrollPixelArrow 1.6s ease infinite;
     opacity: 0.9;
@@ -614,16 +614,6 @@ img {
     filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
 }
 
-@keyframes scrollWheel {
-    0% {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(-50%, 15px);
-        opacity: 0;
-    }
-}
 
 .features-grid {
     display: grid;
@@ -786,7 +776,7 @@ img {
 
 .footer {
     background-color: transparent;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top: none;
     padding-top: var(--spacing-lg);
     position: relative;
     overflow: hidden;
@@ -830,6 +820,7 @@ img {
     gap: 0.5rem;
     font-family: var(--font-heading);
     white-space: nowrap;
+    font-size: 1rem;
 }
 
 .footer-logo-img {
@@ -857,6 +848,7 @@ img {
 .footer-links a {
     color: var(--color-text-muted);
     position: relative;
+    font-size: 0.9rem;
 }
 
 .footer-links a::after {
@@ -969,34 +961,6 @@ img {
     transition-delay: var(--delay, 0s);
 }
 
-.loader-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-bg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    transition: opacity 0.5s ease;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(230, 57, 70, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--color-primary);
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
 
 @media (max-width: 1024px) {
     .footer-container {
