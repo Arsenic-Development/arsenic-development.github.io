@@ -125,9 +125,9 @@ img {
 }
 
 .section {
-    padding: calc(var(--spacing-xl) * 1.5) 0;
+    padding: var(--spacing-lg) 0;
     position: relative;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -324,6 +324,14 @@ img {
     background: transparent;
     color: var(--color-text);
     box-shadow: none;
+    font-size: 1.1rem;
+}
+
+.btn-discord i {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-discord::after {
@@ -489,13 +497,13 @@ img {
     z-index: 1;
     opacity: 0.7;
     transition: opacity var(--transition-fast);
-    width: 34px;
-    height: 34px;
-    border: 2px solid rgba(255, 255, 255, 0.22);
+    width: 24px;
+    height: 24px;
+    border: none;
     border-radius: 0;
     display: grid;
     place-items: center;
-    background: rgba(22, 22, 26, 0.25);
+    background: transparent;
     cursor: pointer;
 }
 
@@ -506,30 +514,28 @@ img {
 
 .scroll-indicator::before {
     content: "";
-    width: 14px;
-    height: 10px;
+    width: 16px;
+    height: 16px;
     background: var(--color-text);
     clip-path: polygon(
-        0% 20%,
-        15% 20%,
-        15% 35%,
-        35% 35%,
-        35% 55%,
-        50% 55%,
-        50% 70%,
-        65% 70%,
-        65% 55%,
-        80% 55%,
-        80% 35%,
-        100% 35%,
-        100% 20%,
-        65% 20%,
-        65% 35%,
-        50% 35%,
-        50% 55%,
-        35% 55%,
-        35% 35%,
-        0% 35%
+        25% 0%,
+        25% 40%,
+        0% 40%,
+        0% 60%,
+        25% 60%,
+        25% 100%,
+        45% 100%,
+        45% 60%,
+        75% 60%,
+        75% 100%,
+        100% 100%,
+        100% 40%,
+        75% 40%,
+        75% 0%,
+        55% 0%,
+        55% 40%,
+        45% 40%,
+        45% 0%
     );
     animation: scrollPixelArrow 1.6s ease infinite;
     opacity: 0.9;
@@ -595,6 +601,17 @@ img {
 .offer-card p {
     color: var(--color-text-muted);
     font-size: 0.95rem;
+}
+
+.offer-icon {
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.offer-icon svg {
+    display: block;
+    image-rendering: pixelated;
+    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
 }
 
 @keyframes scrollWheel {
@@ -769,10 +786,17 @@ img {
 
 .footer {
     background-color: transparent;
-    border-top: none;
-    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: var(--spacing-lg);
     position: relative;
     overflow: hidden;
+}
+
+.footer-separator {
+    width: 80%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 auto var(--spacing-lg);
 }
 
 .footer::before {
@@ -794,9 +818,10 @@ img {
 
 .footer-desc {
     color: var(--color-text-muted);
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
     max-width: 300px;
-    text-align: center;
+    text-align: left;
+    font-size: 0.7rem;
 }
 
 .footer-logo {
@@ -820,8 +845,9 @@ img {
 
 .footer-links h4,
 .footer-social h4 {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     font-family: var(--font-heading);
+    font-size: 1rem;
 }
 
 .footer-links ul li {
@@ -859,6 +885,8 @@ img {
 
 .social-icons i {
     font-size: 1.6rem;
+    image-rendering: pixelated;
+    filter: contrast(1.1);
 }
 
 .social-icons a {

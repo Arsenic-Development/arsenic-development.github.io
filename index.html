@@ -98,12 +98,19 @@
                         class="section-title text-center animate-on-scroll slide-up"
                         data-i18n="offer_title"
                     >
-                        What we offer?
+                        What <span class="text-gradient">we offer?</span>
                     </h2>
 
                     <div class="offer-grid">
                         <div class="offer-card animate-on-scroll zoom-in">
-                            <div class="offer-icon" aria-hidden="true"></div>
+                            <div class="offer-icon" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" width="48" height="48" fill="currentColor">
+                                    <rect x="4" y="4" width="10" height="10" rx="2"/>
+                                    <rect x="18" y="4" width="10" height="10" rx="2"/>
+                                    <rect x="4" y="18" width="10" height="10" rx="2"/>
+                                    <rect x="18" y="18" width="10" height="10" rx="2"/>
+                                </svg>
+                            </div>
                             <h3 data-i18n="offer_1_title">Quality Plugins</h3>
                             <p data-i18n="offer_1_desc">
                                 High-performance Minecraft plugins built to last.
@@ -114,7 +121,12 @@
                             class="offer-card animate-on-scroll zoom-in"
                             style="--delay: 0.2s"
                         >
-                            <div class="offer-icon" aria-hidden="true"></div>
+                            <div class="offer-icon" aria-hidden="true">
+                                <svg viewBox="0 0 32 32" width="48" height="48" fill="currentColor">
+                                    <rect x="2" y="12" width="28" height="8" rx="2"/>
+                                    <rect x="12" y="2" width="8" height="28" rx="2"/>
+                                </svg>
+                            </div>
                             <h3 data-i18n="offer_2_title">Quality Setups</h3>
                             <p data-i18n="offer_2_desc">
                                 Ready-to-use server setups designed to compete.
@@ -202,6 +214,7 @@
         </main>
 
         <footer class="footer">
+            <div class="footer-separator"></div>
             <div class="container footer-container">
                 <div class="footer-brand">
                     <a href="#" class="footer-logo">
@@ -219,15 +232,13 @@
                     <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
                     <ul>
                         <li>
-                            <a href="#hero" data-i18n="link_home">Home</a>
-                        </li>
-                        <li>
-                            <a href="#features" data-i18n="link_features"
-                                >Features</a
-                            >
-                        </li>
-                        <li>
                             <a href="#" data-i18n="link_tos">ToS</a>
+                        </li>
+                        <li>
+                            <a href="#" data-i18n="link_docs">Docs</a>
+                        </li>
+                        <li>
+                            <a href="#" data-i18n="link_tools">Tools</a>
                         </li>
                     </ul>
                 </div>
