@@ -321,7 +321,7 @@ img {
 .header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 190px;
+    width: 210px;
     margin-left: 0.8rem;
 }
 
@@ -613,9 +613,12 @@ img {
 }
 
 .offer-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
-    font-size: 3rem;
+    image-rendering: pixelated;
 }
 
 .offer-icon svg {
