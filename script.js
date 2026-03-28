@@ -110,13 +110,18 @@ document.addEventListener("DOMContentLoaded", () => {
     new Date().getFullYear();
 
   const discordInviteCode = "BewvqAe3jb";
-  fetch(`https://discord.com/api/v9/invites/${discordInviteCode}?with_counts=true`)
+  fetch(
+    `https://discord.com/api/v9/invites/${discordInviteCode}?with_counts=true`,
+  )
     .then((response) => response.json())
     .then((data) => {
       if (data && data.approximate_member_count) {
         const memberCountEl = document.querySelector(".discord-member-count");
         if (memberCountEl) {
-          memberCountEl.setAttribute("data-target", data.approximate_member_count);
+          memberCountEl.setAttribute(
+            "data-target",
+            data.approximate_member_count,
+          );
           if (memberCountEl.classList.contains("counted")) {
             memberCountEl.textContent = data.approximate_member_count;
           }
@@ -195,10 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
       reset() {
         this.active = false;
         this.x = Math.random() * width;
-        this.y = 0;
-        this.len = Math.random() * 100 + 100;
-        this.speed = Math.random() * 15 + 20;
-        this.size = 4;
+        this.y = 0; // Spawn from top
+        this.len = Math.random() * 100 + 100; // Longer (100-200)
+        this.speed = Math.random() * 15 + 20; // Faster (20-35)
+        this.size = 4; // Thicker
         this.angle = Math.PI / 4;
         this.opacity = 0;
       }
@@ -237,13 +242,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function spawnShootingStar() {
       shootingStar.spawn();
-      const nextSpawn = Math.random() * 5000 + 5000;
+      const nextSpawn = 10000;
       setTimeout(spawnShootingStar, nextSpawn);
     }
 
-    setTimeout(spawnShootingStar, 2000);
+    setTimeout(spawnShootingStar, 5000);
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 85; i++) {
       particles.push(new PixelParticle());
       particles[i].alpha = Math.random() * particles[i].targetAlpha;
       particles[i].state = Math.random() > 0.5 ? "fadeIn" : "fadeOut";
