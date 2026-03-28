@@ -1,272 +1,228 @@
 <!doctype html>
 <html lang="en" data-theme="dark">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Arsenic Development</title>
-        <link rel="icon" type="image/png" href="3.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Press+Start+2P&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        />
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <canvas id="pixel-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none;"></canvas>
 
-        <header class="header">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <img src="3.png" alt="Arsenic.Dev Logo" class="logo-img" />
-                    <span class="logo-text"
-                        >Arsenic<span class="logo-dot">.</span><span class="logo-accent">Dev</span></span
-                    >
-                </a>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arsenic Development</title>
+    <link rel="icon" type="image/png" href="arsenic.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Press+Start+2P&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
 
-                <nav class="nav-menu">
-                    <div class="nav-controls">
-                        <div class="lang-selector">
-                            <button
-                                class="icon-btn text-btn"
-                                id="lang-btn"
-                                aria-label="Select Language"
-                                style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: white;"
-                            >
-                                <span id="current-lang">EN</span>
-                            </button>
-                            <ul class="lang-dropdown">
-                                <li data-lang="en">EN</li>
-                                <li data-lang="es">ES</li>
-                            </ul>
-                        </div>
+<body>
+    <canvas id="pixel-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; pointer-events: none;"></canvas>
 
-                        <a
-                            href="https://discord.gg/BewvqAe3jb"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-discord"
-                        >
-                            <i class="fa-brands fa-discord"></i>
-                            <span
-                                class="discord-text"
-                                data-i18n="join_discord_text"
-                                >Join Discord</span
-                            >
-                        </a>
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="arsenic.png" alt="Arsenic.Dev Logo" class="logo-img" />
+                <span class="logo-text">Arsenic<span class="logo-dot">.</span><span
+                        class="logo-accent">Dev</span></span>
+            </a>
+
+            <nav class="nav-menu">
+                <div class="nav-controls">
+                    <div class="lang-selector">
+                        <button class="icon-btn text-btn" id="lang-btn" aria-label="Select Language"
+                            style="display: flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; color: white;">
+                            <span id="current-lang">EN</span>
+                        </button>
+                        <ul class="lang-dropdown">
+                            <li data-lang="en">EN</li>
+                            <li data-lang="es">ES</li>
+                        </ul>
                     </div>
-                </nav>
-            </div>
-        </header>
 
-        <main>
-            <section id="hero" class="hero section">
-                <div class="bg-gradient-orb"></div>
-
-                <div class="container hero-content animate-on-scroll slide-up">
-                    <h1 class="hero-title" data-i18n="hero_title">
-                        Arsenic <span class="text-gradient">Development</span>
-                    </h1>
-                    <p class="hero-subtitle" data-i18n="hero_subtitle">
-                        Arsenic Development is a studio where we develop
-                        Minecraft plugins.
-                    </p>
-                </div>
-
-                <div class="scroll-hint" data-i18n="scroll_hint">
-                    Scroll to start your adventure
-                </div>
-                <button type="button" class="scroll-indicator" data-target="#offer" aria-label="Scroll to features">
-                    <span class="mouse">
-                        <span class="wheel"></span>
-                    </span>
-                </button>
-            </section>
-
-            <div class="section-separator"></div>
-
-            <section id="offer" class="offer section">
-                <div class="container">
-                    <h2
-                        class="section-title text-center animate-on-scroll slide-up"
-                        data-i18n="offer_title"
-                    >
-                        What <span class="text-gradient">we offer?</span>
-                    </h2>
-
-                    <div class="offer-grid">
-                        <div class="offer-card animate-on-scroll zoom-in">
-                            <div class="offer-icon" aria-hidden="true">
-                                <i class="fa-solid fa-plug"></i>
-                            </div>
-                            <h3 data-i18n="offer_1_title">Quality Plugins</h3>
-                            <p data-i18n="offer_1_desc">
-                                High-performance Minecraft plugins built to last.
-                            </p>
-                        </div>
-
-                        <div
-                            class="offer-card animate-on-scroll zoom-in"
-                            style="--delay: 0.2s"
-                        >
-                            <div class="offer-icon" aria-hidden="true">
-                                <i class="fa-solid fa-cubes"></i>
-                            </div>
-                            <h3 data-i18n="offer_2_title">Quality Setups</h3>
-                            <p data-i18n="offer_2_desc">
-                                Ready-to-use server setups designed to compete.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="section-separator"></div>
-
-            <section id="features" class="features section">
-                <div class="container">
-                    <h2
-                        class="section-title text-center animate-on-scroll slide-up"
-                        data-i18n="features_title"
-                    >
-                        Nuestras
-                        <span class="text-gradient">Características</span>
-                    </h2>
-
-                    <div class="features-grid">
-                        <div
-                            class="feature-card animate-on-scroll zoom-in"
-                        >
-                            <i class="fa-solid fa-comments feature-icon"></i>
-                            <h3 data-i18n="feature_1_title">
-                                Comunidad
-                            </h3>
-                            <p data-i18n="feature_1_desc">
-                                Conecta con cientos de desarrolladores
-                                apasionados dispuestos a colaborar y compartir
-                                conocimientos.
-                            </p>
-                        </div>
-
-                        <div
-                            class="feature-card animate-on-scroll zoom-in"
-                            style="--delay: 0.3s"
-                        >
-                            <i class="fa-solid fa-life-ring feature-icon"></i>
-                            <h3 data-i18n="feature_4_title">Soporte</h3>
-                            <p data-i18n="feature_4_desc">
-                                Resuelve tus dudas rápidamente con la ayuda de
-                                mentores y desarrolladores experimentados.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="section-separator"></div>
-
-            <section id="stats" class="stats section dark-bg">
-                <div class="container">
-                    <h2
-                        class="section-title text-center animate-on-scroll slide-up"
-                        data-i18n="stats_title"
-                    >
-                        Our <span class="text-gradient">stats</span>
-                    </h2>
-                    <div class="stats-grid">
-                        <div class="stat-item animate-on-scroll zoom-in">
-                            <div class="stat-number">
-                                <span
-                                    class="counter discord-member-count"
-                                    data-target="0"
-                                    >0</span
-                                >
-                            </div>
-                            <div class="stat-label" data-i18n="stat_members">
-                                Miembros
-                            </div>
-                        </div>
-                        <div
-                            class="stat-item animate-on-scroll zoom-in"
-                            style="--delay: 0.1s"
-                        >
-                            <div class="stat-number">
-                                <span class="counter" data-target="1">1</span>
-                            </div>
-                            <div class="stat-label" data-i18n="stat_projects">
-                                Proyectos
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <div class="footer-separator"></div>
-            <div class="container footer-container">
-                <div class="footer-brand">
-                    <a href="#" class="footer-logo">
-                        <img src="3.png" alt="Arsenic.Dev Logo" class="footer-logo-img" />
-                        <span class="footer-logo-text"
-                            >Arsenic<span class="logo-dot">.</span><span class="logo-accent">Dev</span></span
-                        >
+                    <a href="https://discord.gg/BewvqAe3jb" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-discord">
+                        <img src="discord-pixel.png" alt="Discord"
+                            style="width: 24px; height: 24px; image-rendering: pixelated;">
+                        <span class="discord-text" data-i18n="join_discord_text">Join Discord</span>
                     </a>
-                    <p class="footer-desc" data-i18n="footer_desc">
-                        Built for performance, designed for competition.
-                    </p>
                 </div>
+            </nav>
+        </div>
+    </header>
 
-                <div class="footer-links">
-                    <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
-                    <ul>
-                        <li>
-                            <a href="#" data-i18n="link_tos">ToS</a>
-                        </li>
-                        <li>
-                            <a href="#" data-i18n="link_docs">Docs</a>
-                        </li>
-                        <li>
-                            <a href="#" data-i18n="link_tools">Tools</a>
-                        </li>
-                    </ul>
-                </div>
+    <main>
+        <section id="hero" class="hero section">
+            <div class="bg-gradient-orb"></div>
 
-                <div class="footer-social">
-                    <h4 data-i18n="footer_social">Síguenos</h4>
-                    <div class="social-icons">
-                        <a
-                            href="https://github.com/Arsenic-Development"
-                            aria-label="GitHub"
-                            ><i class="fa-brands fa-github"></i
-                        ></a>
-                        <a
-                            href="https://discord.gg/BewvqAe3jb"
-                            aria-label="Discord"
-                            ><i class="fa-brands fa-discord"></i
-                        ></a>
+            <div class="container hero-content animate-on-scroll slide-up">
+                <h1 class="hero-title" data-i18n="hero_title">
+                    Arsenic <span class="text-gradient">Development</span>
+                </h1>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">
+                    Arsenic Development is a studio where we develop
+                    Minecraft plugins.
+                </p>
+            </div>
+
+            <div class="scroll-hint" data-i18n="scroll_hint">
+                Scroll to start your adventure
+            </div>
+            <div class="scroll-indicator" aria-label="Scroll hint">
+                <span class="mouse">
+                    <span class="wheel"></span>
+                </span>
+            </div>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="offer" class="offer section">
+            <div class="container">
+                <h2 class="section-title text-center animate-on-scroll slide-up" data-i18n="offer_title">
+                    What <span class="text-gradient">we offer?</span>
+                </h2>
+
+                <div class="offer-grid">
+                    <div class="offer-card animate-on-scroll zoom-in">
+                        <div class="offer-icon" aria-hidden="true">
+                            <i class="fa-solid fa-plug"></i>
+                        </div>
+                        <h3 data-i18n="offer_1_title">Quality Plugins</h3>
+                        <p data-i18n="offer_1_desc">
+                            High-performance Minecraft plugins built to last.
+                        </p>
+                    </div>
+
+                    <div class="offer-card animate-on-scroll zoom-in" style="--delay: 0.2s">
+                        <div class="offer-icon" aria-hidden="true">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3 data-i18n="offer_2_title">Quality Setups</h3>
+                        <p data-i18n="offer_2_desc">
+                            Ready-to-use server setups designed to compete.
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="container footer-bottom-container">
-                    <p>
-                        &copy; <span id="current-year"></span> Arsenic
-                        Development.
-                        <span data-i18n="footer_rights"
-                            >Todos los derechos reservados.</span
-                        >
-                    </p>
+        </section>
+
+        <div class="section-separator"></div>
+
+        <section id="features" class="features section">
+            <div class="container">
+                <h2 class="section-title text-center animate-on-scroll slide-up" data-i18n="features_title">
+                    Nuestras
+                    <span class="text-gradient">Características</span>
+                </h2>
+
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll zoom-in">
+                        <img src="community.png" alt="Community" class="feature-icon">
+                        <h3 data-i18n="feature_1_title">
+                            Comunidad
+                        </h3>
+                        <p data-i18n="feature_1_desc">
+                            Conecta con cientos de desarrolladores
+                            apasionados dispuestos a colaborar y compartir
+                            conocimientos.
+                        </p>
+                    </div>
+
+                    <div class="feature-card animate-on-scroll zoom-in" style="--delay: 0.3s">
+                        <img src="support.png" alt="Support" class="feature-icon">
+                        <h3 data-i18n="feature_4_title">Soporte</h3>
+                        <p data-i18n="feature_4_desc">
+                            Resuelve tus dudas rápidamente con la ayuda de
+                            mentores y desarrolladores experimentados.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </section>
 
-        <script src="translations.js"></script>
-        <script src="script.js"></script>
-    </body>
+        <div class="section-separator"></div>
+
+        <section id="stats" class="stats section dark-bg">
+            <div class="container">
+                <h2 class="section-title text-center animate-on-scroll slide-up" data-i18n="stats_title">
+                    Our <span class="text-gradient">stats</span>
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-item animate-on-scroll zoom-in">
+                        <div class="stat-number">
+                            <span class="counter discord-member-count" data-target="0">0</span>
+                        </div>
+                        <div class="stat-label" data-i18n="stat_members">
+                            Miembros
+                        </div>
+                    </div>
+                    <div class="stat-item animate-on-scroll zoom-in" style="--delay: 0.1s">
+                        <div class="stat-number">
+                            <span class="counter" data-target="1">1</span>
+                        </div>
+                        <div class="stat-label" data-i18n="stat_projects">
+                            Proyectos
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-separator"></div>
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="arsenic.png" alt="Arsenic.Dev Logo" class="footer-logo-img" />
+                    <span class="footer-logo-text">Arsenic<span class="logo-dot">.</span><span
+                            class="logo-accent">Dev</span></span>
+                </div>
+                <p class="footer-desc" data-i18n="footer_desc">
+                    Built for performance, designed for competition.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
+                <ul>
+                    <li>
+                        <a href="#" data-i18n="link_tos">ToS</a>
+                    </li>
+                    <li>
+                        <a href="#" data-i18n="link_docs">Docs</a>
+                    </li>
+                    <li>
+                        <a href="#" data-i18n="link_tools">Tools</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4 data-i18n="footer_social">Síguenos</h4>
+                <div class="social-icons">
+                    <a href="https://github.com/Arsenic-Development" aria-label="GitHub" target="_blank"
+                        rel="noopener noreferrer"><img src="github-pixel.png" alt="GitHub"
+                            style="width: 24px; height: 24px; image-rendering: pixelated;"></a>
+                    <a href="https://discord.gg/BewvqAe3jb" aria-label="Discord" target="_blank"
+                        rel="noopener noreferrer"><img src="discord-pixel.png" alt="Discord"
+                            style="width: 24px; height: 24px; image-rendering: pixelated;"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>
+                    &copy; <span id="current-year"></span> Arsenic
+                    Development.
+                    <span data-i18n="footer_rights">Todos los derechos reservados.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>

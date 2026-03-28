@@ -155,7 +155,8 @@ img {
     margin-bottom: var(--spacing-xl);
 }
 
-.section-separator {
+.section-separator,
+.footer-separator {
     width: 80%;
     height: 1px;
     background: linear-gradient(90deg,
@@ -170,7 +171,7 @@ img {
     display: inline-block;
     vertical-align: baseline;
     position: relative;
-    top: 2px;
+    top: -1px; /* Corrected alignment */
     line-height: 0;
 }
 
@@ -287,6 +288,7 @@ img {
 
 .logo-accent {
     color: var(--color-primary);
+    vertical-align: baseline;
 }
 
 .nav-menu {
@@ -315,9 +317,8 @@ img {
 .header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 180px;
-    /* Increased width to prevent clipping "Join Discord" */
-    margin-left: 0.4rem;
+    width: 190px; /* Increased to avoid truncation */
+    margin-left: 0.8rem;
 }
 
 .btn-discord {
@@ -355,20 +356,20 @@ img {
     height: 2px;
     background: var(--color-primary);
     transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.2s ease;
+    transform-origin: left;
+    transition: transform 0.3s ease;
 }
 
 .btn-discord:hover {
     background-color: transparent;
     color: var(--color-primary);
-    transform: none;
+    transform: scale(1.08);
     box-shadow: none;
 }
 
 .btn-discord:hover::after {
     transform: scaleX(1);
-    transform-origin: right;
+    transform-origin: left;
 }
 
 .btn-discord:hover .discord-text {
@@ -376,7 +377,8 @@ img {
 }
 
 .btn-discord:not(:hover)::after {
-    transform-origin: left;
+    transform: scaleX(0);
+    transform-origin: right;
 }
 
 .header.scrolled .btn-discord {
@@ -609,6 +611,7 @@ img {
 .offer-icon {
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
+    font-size: 3rem; /* Increased size */
 }
 
 .offer-icon svg {
@@ -668,7 +671,9 @@ img {
 }
 
 .feature-icon {
-    font-size: 2.5rem;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
     display: inline-block;
@@ -786,10 +791,7 @@ img {
 }
 
 .footer-separator {
-    width: 80%;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 0 auto var(--spacing-lg);
+    display: none; /* Replaced by unified separator */
 }
 
 .footer::before {
@@ -801,6 +803,7 @@ img {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+    align-items: center; /* Centrado vertical */
 }
 
 .footer-links a,
@@ -808,6 +811,12 @@ img {
     position: relative;
     display: inline-block;
     padding-bottom: 2px;
+    transition: transform 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-social a:hover {
+    transform: scale(1.1);
 }
 
 .footer-links a::after,
@@ -820,13 +829,19 @@ img {
     height: 1px;
     background-color: var(--color-primary);
     transform: scaleX(0);
-    transform-origin: right;
+    transform-origin: left;
     transition: transform 0.3s ease-in-out;
 }
 
 .footer-links a:hover::after,
 .footer-social a:hover::after {
     transform: scaleX(1);
+    transform-origin: left;
+}
+
+.footer-links a:not(:hover)::after,
+.footer-social a:not(:hover)::after {
+    transform: scaleX(0);
     transform-origin: right;
 }
 

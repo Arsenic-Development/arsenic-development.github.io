@@ -192,6 +192,63 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    class ShootingStar {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.active = false;
+        this.x = Math.random() * width;
+        this.y = Math.random() * (height * 0.5);
+        this.len = Math.random() * 80 + 50;
+        this.speed = Math.random() * 10 + 15;
+        this.size = 2;
+        this.angle = Math.PI / 4; // 45 degrees
+        this.opacity = 0;
+      }
+
+      spawn() {
+        this.reset();
+        this.active = true;
+      }
+
+      update() {
+        if (!this.active) return;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
+        this.opacity = Math.max(0, 1 - (this.y / height) * 2);
+        
+        if (this.x > width || this.y > height) {
+          this.active = false;
+        }
+      }
+
+      draw() {
+        if (!this.active) return;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.lineWidth = this.size;
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(
+          this.x - Math.cos(this.angle) * this.len,
+          this.y - Math.sin(this.angle) * this.len
+        );
+        ctx.stroke();
+      }
+    }
+
+    const shootingStar = new ShootingStar();
+
+    function spawnShootingStar() {
+      shootingStar.spawn();
+      const nextSpawn = Math.random() * (300000 - 180000) + 180000; // 3-5 minutes
+      setTimeout(spawnShootingStar, nextSpawn);
+    }
+
+    // Initial spawn timer
+    setTimeout(spawnShootingStar, Math.random() * 60000 + 30000); // First one after 30-90 seconds
+
     for (let i = 0; i < 85; i++) {
       particles.push(new PixelParticle());
       particles[i].alpha = Math.random() * particles[i].targetAlpha;
@@ -204,6 +261,8 @@ document.addEventListener("DOMContentLoaded", () => {
         p.update();
         p.draw();
       });
+      shootingStar.update();
+      shootingStar.draw();
       requestAnimationFrame(animate);
     }
 
