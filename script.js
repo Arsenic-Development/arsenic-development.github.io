@@ -20,44 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const langSelector = document.querySelector(".lang-selector");
-  const langBtn = document.getElementById("lang-btn");
-  const currentLangText = document.getElementById("current-lang");
-  const langOptions = document.querySelectorAll(".lang-dropdown li");
-
-  langBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    langSelector.classList.toggle("active");
-  });
-
-  document.addEventListener("click", () => {
-    langSelector.classList.remove("active");
-  });
-
-  langOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      const lang = option.getAttribute("data-lang");
-      setLanguage(lang);
-      langSelector.classList.remove("active");
+  const toolsDropdown = document.getElementById("tools-dropdown");
+  if (toolsDropdown) {
+    const toggle = toolsDropdown.querySelector(".dropdown-toggle");
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toolsDropdown.classList.toggle("active");
     });
-  });
 
-  const savedLang = localStorage.getItem("lang");
-  const initialLang = savedLang ? savedLang : "en";
-  setLanguage(initialLang);
-
-  function setLanguage(lang) {
-    if (!translations[lang]) return;
-
-    localStorage.setItem("lang", lang);
-    document.documentElement.lang = lang;
-    currentLangText.textContent = lang.toUpperCase();
-
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const key = el.getAttribute("data-i18n");
-      if (translations[lang][key]) {
-        el.innerHTML = translations[lang][key];
-      }
+    document.addEventListener("click", () => {
+      toolsDropdown.classList.remove("active");
     });
   }
 

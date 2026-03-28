@@ -59,6 +59,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' shape-rendering='crispEdges'%3E%3Cpath fill='%23000' d='M0 0h2v16H0zM2 2h2v12H2zm2 2h2v10H4zm2 2h2v8H6zm2 2h2v6H8zm2 2h2v4h-2zm2 2h2v2h-2z'/%3E%3Cpath fill='%23ff4444' d='M2 1h2v13H2zm2 2h2v11H4zm2 2h2v9H6zm2 2h2v7H8zm2 2h2v5h-2zm2 2h2v3h-2z'/%3E%3C/svg%3E"),
+        auto;
 }
 
 html {
@@ -243,7 +246,7 @@ img {
     transition:
         background 0.25s ease,
         border-color 0.25s ease;
-    background: rgba(22, 22, 26, 0.6);
+    background: rgba(15, 15, 17, 0.7);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -252,9 +255,8 @@ img {
 }
 
 .header.scrolled {
-    background: rgba(22, 22, 26, 0.8);
-    box-shadow: none;
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(15, 15, 17, 0.95);
+    border-color: rgba(230, 57, 70, 0.2);
 }
 
 .header-container {
@@ -295,54 +297,122 @@ img {
     vertical-align: baseline;
 }
 
-.nav-menu {
+.nav-links {
     display: flex;
-    align-items: center;
+    gap: 2rem;
+    margin: 0 2rem;
 }
 
-.nav-controls {
+.nav-link {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+.nav-item.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(22, 22, 26, 0.95);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    color: var(--color-text-muted);
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--color-primary);
+    padding-left: 1.25rem;
+}
+
+.dropdown-arrow {
+    font-size: 0.6rem;
+    transition: transform 0.2s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-arrow,
+.nav-item.dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.discord-header-icon {
+    width: 20px;
+    height: 20px;
+    image-rendering: pixelated;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(93%) saturate(1458%)
+        hue-rotate(334deg) brightness(91%) contrast(101%);
+    mix-blend-mode: screen;
 }
 
 .discord-text {
     display: inline-block;
     white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    width: 0;
-    overflow: hidden;
-    font-size: 0.8rem; /* Smaller, like lang selector */
-    transition:
-        width 0.25s ease,
-        opacity 0.25s ease;
-}
-
-.header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 130px; /* Reduced width since text is smaller */
+    width: 0;
+    overflow: hidden;
+    font-size: 0.7rem;
+    transition: width 0.25s ease;
+}
+
+.header.scrolled .discord-text,
+.btn-discord:hover .discord-text {
+    width: 160px;
     margin-left: 0.8rem;
 }
 
 .btn-discord {
     position: relative;
-    padding: 0.4rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 50px;
-    min-width: 36px;
-    height: 36px;
+    min-width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease,
-        color 0.2s ease;
-    background: transparent;
+    transition: all 0.25s ease;
+    background: rgba(255, 255, 255, 0.05);
     color: var(--color-text);
-    box-shadow: none;
-    font-size: 1.1rem;
+}
+
+.header.scrolled .btn-discord {
+    width: 210px;
+    background: rgba(230, 57, 70, 0.1);
+    border: 1px solid rgba(230, 57, 70, 0.2);
 }
 
 .btn-discord i {
@@ -390,56 +460,6 @@ img {
     padding: 0.4rem;
     min-width: 36px;
     height: 36px;
-}
-
-.lang-selector {
-    position: relative;
-}
-
-#lang-btn {
-    width: auto;
-    padding: 0 0.5rem;
-    border-radius: var(--radius-sm);
-    gap: 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--color-text);
-    font-family: var(--font-heading);
-}
-
-.lang-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: var(--color-bg-soft);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    padding: 0.5rem 0;
-    min-width: 90px;
-    box-shadow: var(--shadow-md);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all var(--transition-fast);
-}
-
-.lang-selector.active .lang-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.lang-dropdown li {
-    padding: 0.4rem 0.75rem;
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-}
-
-.lang-dropdown li:hover {
-    background-color: rgba(var(--color-primary-rgb), 0.1);
-    color: var(--color-primary);
 }
 
 .hero {
@@ -620,21 +640,26 @@ img {
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
     font-size: 3rem;
 }
 
+.offer-icon svg,
 .red-emoji {
-    color: #ff4444; /* Bright Arsenic Red */
+    color: #ff4444;
     font-size: 3.5rem;
-    filter: drop-shadow(0 0 10px rgba(255, 68, 68, 0.4));
+    filter: drop-shadow(0 0 10px rgba(230, 57, 70, 0.4)) contrast(1.2);
     line-height: 1;
 }
 
-.offer-icon svg {
-    display: block;
+.offer-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     image-rendering: pixelated;
-    filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
+    filter: brightness(0) saturate(100%) invert(43%) sepia(93%) saturate(1458%)
+        hue-rotate(334deg) brightness(91%) contrast(101%);
 }
 
 .features-grid {
@@ -1019,4 +1044,19 @@ img {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
+}
+.footer-social-icon {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(93%) saturate(1458%)
+        hue-rotate(334deg) brightness(91%) contrast(101%);
+    transition: transform 0.2s ease;
+    mix-blend-mode: screen;
+}
+
+.footer-social-icon:hover {
+    transform: scale(1.2);
+    filter: brightness(0) saturate(100%) invert(21%) sepia(100%) saturate(7400%)
+        hue-rotate(352deg) brightness(94%) contrast(117%);
 }
