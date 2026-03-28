@@ -200,10 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
       reset() {
         this.active = false;
         this.x = Math.random() * width;
-        this.y = Math.random() * (height * 0.5);
-        this.len = Math.random() * 80 + 50;
-        this.speed = Math.random() * 10 + 15;
-        this.size = 2;
+        this.y = 0; // Spawn from top
+        this.len = Math.random() * 100 + 100; // Longer (100-200)
+        this.speed = Math.random() * 15 + 20; // Faster (20-35)
+        this.size = 4; // Thicker
         this.angle = Math.PI / 4;
         this.opacity = 0;
       }
