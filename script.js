@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const discordInviteCode = "BewvqAe3jb";
   fetch(
-    `https://discord.com/api/v9/invites/${discordInviteCode}?with_counts=true`,
+    `https:
   )
     .then((response) => response.json())
     .then((data) => {
@@ -200,10 +200,10 @@ document.addEventListener("DOMContentLoaded", () => {
       reset() {
         this.active = false;
         this.x = Math.random() * width;
-        this.y = 0; // Spawn from top
-        this.len = Math.random() * 100 + 100; // Longer (100-200)
-        this.speed = Math.random() * 15 + 20; // Faster (20-35)
-        this.size = 4; // Thicker
+        this.y = 0;
+        this.len = Math.random() * 100 + 100;
+        this.speed = Math.random() * 15 + 20;
+        this.size = 4;
         this.angle = Math.PI / 4;
         this.opacity = 0;
       }
