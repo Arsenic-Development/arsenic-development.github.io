@@ -379,27 +379,14 @@ img {
 }
 
 .discord-text {
-    display: inline-block;
-    white-space: nowrap;
-    opacity: 1;
-    visibility: visible;
-    width: 0;
-    overflow: hidden;
-    font-size: 0.7rem;
-    transition: width 0.25s ease;
+    display: none;
 }
 
-.header.scrolled .discord-text,
-.btn-discord:hover .discord-text {
-    width: 160px;
-    margin-left: 0.8rem;
-}
-
-.btn-discord {
+.btn-discord-icon {
     position: relative;
-    padding: 0.4rem 0.8rem;
-    border-radius: 50px;
-    min-width: 40px;
+    padding: 0.4rem;
+    border-radius: 50%;
+    width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -409,10 +396,14 @@ img {
     color: var(--color-text);
 }
 
-.header.scrolled .btn-discord {
-    width: 210px;
+.header.scrolled .btn-discord-icon {
     background: rgba(230, 57, 70, 0.1);
     border: 1px solid rgba(230, 57, 70, 0.2);
+}
+
+.btn-discord-icon:hover {
+    transform: scale(1.1);
+    background: rgba(230, 57, 70, 0.2);
 }
 
 .btn-discord i {
@@ -498,10 +489,10 @@ img {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.1;
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -1px;
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    line-height: 1;
+    margin-bottom: var(--spacing-lg);
+    letter-spacing: -2px;
     text-align: center;
 }
 
@@ -551,22 +542,25 @@ img {
     display: none;
 }
 
-.scroll-indicator::before {
-    content: "";
-    width: 4px;
-    height: 4px;
-    background: var(--color-text);
-    box-shadow:
-        -4px 0 0 var(--color-text),
-        4px 0 0 var(--color-text),
-        -8px 0 0 var(--color-text),
-        8px 0 0 var(--color-text),
-        -4px 4px 0 var(--color-text),
-        0 4px 0 var(--color-text),
-        4px 4px 0 var(--color-text),
-        0 8px 0 var(--color-text);
-    animation: scrollPixelArrow 1.6s ease infinite;
-    opacity: 0.9;
+.btn-hero {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-hero:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+    background: #ff4d4d;
 }
 
 @keyframes scrollPixelArrow {
@@ -646,11 +640,15 @@ img {
 }
 
 .offer-icon svg,
-.red-emoji {
+.red-emoji,
+.red-emoji-icon {
     color: #ff4444;
     font-size: 3.5rem;
     filter: drop-shadow(0 0 10px rgba(230, 57, 70, 0.4)) contrast(1.2);
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .offer-icon img {
