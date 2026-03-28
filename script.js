@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(
           this.x - Math.cos(this.angle) * this.len,
-          this.y - Math.sin(this.angle) * this.len
+          this.y - Math.sin(this.angle) * this.len,
         );
         ctx.stroke();
       }

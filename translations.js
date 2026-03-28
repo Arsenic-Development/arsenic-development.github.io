@@ -16,13 +16,13 @@ const translations = {
     feature_1_desc:
       "Conecta con dueños de servidores y personas apasionadas por construir servidores.",
     feature_4_title: "Soporte",
-    feature_4_desc:
-      "Obtén respuestas instantáneas a tus preguntas en Discord.",
-    stats_title: "<span style='color: white;'>Nuestras</span> <span class='text-gradient'>estadísticas</span>",
+    feature_4_desc: "Obtén respuestas instantáneas a tus preguntas en Discord.",
+    stats_title:
+      "<span style='color: white;'>Nuestras</span> <span class='text-gradient'>estadísticas</span>",
     stat_members: "Miembros",
     stat_projects: "Proyectos",
     footer_desc:
-      "\"Construido para el rendimiento, diseñado para la competición.\"",
+      '"Construido para el rendimiento, diseñado para la competición."',
     footer_links: "Enlaces Rápidos",
     link_tos: "ToS",
     link_docs: "Docs",
@@ -46,12 +46,12 @@ const translations = {
     feature_1_desc:
       "Connect with server owners and people who are passionate about building servers.",
     feature_4_title: "Support",
-    feature_4_desc:
-      "Get instant answers to your questions on Discord.",
-    stats_title: "<span style='color: white;'>Our</span> <span class='text-gradient'>stats</span>",
+    feature_4_desc: "Get instant answers to your questions on Discord.",
+    stats_title:
+      "<span style='color: white;'>Our</span> <span class='text-gradient'>stats</span>",
     stat_members: "Members",
     stat_projects: "Projects",
-    footer_desc: "\"Built for performance, designed for competition.\"",
+    footer_desc: '"Built for performance, designed for competition."',
     footer_links: "Quick Links",
     link_tos: "ToS",
     link_docs: "Docs",

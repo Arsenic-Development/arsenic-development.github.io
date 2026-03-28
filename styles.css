@@ -12,9 +12,11 @@
     --color-border: #2a2a2a;
 
     --gradient-primary: linear-gradient(135deg, #ff4d4d 0%, #8b0000 100%);
-    --gradient-glow: radial-gradient(circle,
-            rgba(230, 57, 70, 0.2) 0%,
-            rgba(10, 10, 10, 0) 70%);
+    --gradient-glow: radial-gradient(
+        circle,
+        rgba(230, 57, 70, 0.2) 0%,
+        rgba(10, 10, 10, 0) 70%
+    );
 
     --font-heading: "Press Start 2P", monospace;
     --font-body: "Press Start 2P", monospace;
@@ -159,10 +161,12 @@ img {
 .footer-separator {
     width: 80%;
     height: 1px;
-    background: linear-gradient(90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.1) 50%,
-            rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
     margin: 80px auto;
 }
 
@@ -620,7 +624,6 @@ img {
     filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.5));
 }
 
-
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -968,7 +971,6 @@ img {
     transform: translate(0) scale(1);
     transition-delay: var(--delay, 0s);
 }
-
 
 @media (max-width: 1024px) {
     .footer-container {
