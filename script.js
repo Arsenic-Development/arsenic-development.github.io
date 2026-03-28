@@ -110,18 +110,13 @@ document.addEventListener("DOMContentLoaded", () => {
     new Date().getFullYear();
 
   const discordInviteCode = "BewvqAe3jb";
-  fetch(
-    `https:
-  )
+  fetch(`https://discord.com/api/v9/invites/${discordInviteCode}?with_counts=true`)
     .then((response) => response.json())
     .then((data) => {
       if (data && data.approximate_member_count) {
         const memberCountEl = document.querySelector(".discord-member-count");
         if (memberCountEl) {
-          memberCountEl.setAttribute(
-            "data-target",
-            data.approximate_member_count,
-          );
+          memberCountEl.setAttribute("data-target", data.approximate_member_count);
           if (memberCountEl.classList.contains("counted")) {
             memberCountEl.textContent = data.approximate_member_count;
           }
@@ -242,13 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function spawnShootingStar() {
       shootingStar.spawn();
-      const nextSpawn = 10000;
+      const nextSpawn = Math.random() * 5000 + 5000;
       setTimeout(spawnShootingStar, nextSpawn);
     }
 
-    setTimeout(spawnShootingStar, 5000);
+    setTimeout(spawnShootingStar, 2000);
 
-    for (let i = 0; i < 85; i++) {
+    for (let i = 0; i < 150; i++) {
       particles.push(new PixelParticle());
       particles[i].alpha = Math.random() * particles[i].targetAlpha;
       particles[i].state = Math.random() > 0.5 ? "fadeIn" : "fadeOut";
