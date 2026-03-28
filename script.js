@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         this.x += Math.cos(this.angle) * this.speed;
         this.y += Math.sin(this.angle) * this.speed;
         this.opacity = Math.max(0, 1 - (this.y / height) * 2);
-        
+
         if (this.x > width || this.y > height) {
           this.active = false;
         }
@@ -242,12 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function spawnShootingStar() {
       shootingStar.spawn();
-      const nextSpawn = Math.random() * (300000 - 180000) + 180000; // 3-5 minutes
+      const nextSpawn = Math.random() * (300000 - 180000) + 180000;
       setTimeout(spawnShootingStar, nextSpawn);
     }
 
-    // Initial spawn timer
-    setTimeout(spawnShootingStar, Math.random() * 60000 + 30000); // First one after 30-90 seconds
+    setTimeout(spawnShootingStar, Math.random() * 60000 + 30000);
 
     for (let i = 0; i < 85; i++) {
       particles.push(new PixelParticle());

@@ -171,7 +171,7 @@ img {
     display: inline-block;
     vertical-align: baseline;
     position: relative;
-    top: -1px; /* Corrected alignment */
+    top: -1px;
     line-height: 0;
 }
 
@@ -317,7 +317,7 @@ img {
 .header.scrolled .discord-text {
     opacity: 1;
     visibility: visible;
-    width: 190px; /* Increased to avoid truncation */
+    width: 190px;
     margin-left: 0.8rem;
 }
 
@@ -611,7 +611,7 @@ img {
 .offer-icon {
     color: var(--color-primary);
     margin-bottom: var(--spacing-md);
-    font-size: 3rem; /* Increased size */
+    font-size: 3rem;
 }
 
 .offer-icon svg {
@@ -791,7 +791,7 @@ img {
 }
 
 .footer-separator {
-    display: none; /* Replaced by unified separator */
+    display: none;
 }
 
 .footer::before {
@@ -803,7 +803,7 @@ img {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
-    align-items: center; /* Centrado vertical */
+    align-items: center;
 }
 
 .footer-links a,
