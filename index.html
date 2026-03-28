@@ -3,8 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Arsenic Development</title>
+        <meta
+            name="description"
+            content="Arsenic Development - High-performance Minecraft plugins and premium server setups. Lightweight, bloat-free, fully customizable, and built for competition."
+        />
+
+        <title>Arsenic Development | Minecraft Plugins & Setups</title>
+
+        <link rel="preload" href="arsenic.png" as="image" />
         <link rel="icon" type="image/png" href="arsenic.png" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -13,24 +21,16 @@
         />
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
         />
         <link rel="stylesheet" href="styles.css" />
     </head>
 
     <body>
-        <canvas
-            id="pixel-canvas"
-            style="
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                z-index: -2;
-                pointer-events: none;
-            "
-        ></canvas>
+        <a href="#main" class="skip-link">Skip to main content</a>
+        <canvas id="pixel-canvas"></canvas>
 
         <header class="header">
             <div class="header-container">
@@ -50,15 +50,28 @@
                     <ul class="nav-links">
                         <li class="nav-item dropdown" id="tools-dropdown">
                             <a href="#" class="nav-link dropdown-toggle">
-                                Tools <i class="fas fa-chevron-down dropdown-arrow"></i>
+                                Tools
+                                <i
+                                    class="fas fa-chevron-down dropdown-arrow"
+                                ></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Tool 1</a></li>
-                                <li><a href="#">Tool 2</a></li>
-                                <li><a href="#">Tool 3</a></li>
+                                <li><a href="#">GUI Texture Builder</a></li>
+                                <li><a href="#">Skin Grabber</a></li>
                             </ul>
                         </li>
-                        <li><a href="#" class="nav-link">Docs <i class="fas fa-book-open" style="font-size: 0.6rem; margin-left: 0.3rem;"></i></a></li>
+                        <li>
+                            <a href="#" class="nav-link"
+                                >Documentation
+                                <i
+                                    class="fas fa-book-open"
+                                    style="
+                                        font-size: 0.6rem;
+                                        margin-left: 0.3rem;
+                                    "
+                                ></i
+                            ></a>
+                        </li>
                     </ul>
                     <div class="nav-controls">
                         <a
@@ -66,8 +79,9 @@
                             target="_blank"
                             rel="noopener noreferrer"
                             class="btn btn-discord-icon"
+                            aria-label="Discord"
                         >
-                            <img src="discord.png" alt="Discord" class="discord-header-icon" />
+                            <i class="fab fa-discord"></i>
                         </a>
                     </div>
                 </nav>
@@ -83,30 +97,39 @@
                         Arsenic <span class="text-gradient">Development</span>
                     </h1>
                     <p class="hero-subtitle">
-                        Arsenic Development is a studio where we develop
-                        Minecraft plugins.
+                        We develop high-performance Minecraft plugins and server
+                        setups — lightweight, bloat-free, fully customizable,
+                        and built for competition.
                     </p>
-                    <a href="https://discord.gg/BewvqAe3jb" target="_blank" rel="noopener noreferrer" class="btn btn-hero">
-                        Join Discord
+                    <a
+                        href="https://discord.gg/BewvqAe3jb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-hero"
+                        aria-label="Join our Discord"
+                    >
+                        Join Our Discord
                     </a>
                 </div>
 
-                <div class="scroll-hint">
-                    Scroll to start your adventure
-                </div>
-                <div class="scroll-indicator" aria-label="Scroll hint">
+                <div class="scroll-hint">Scroll to begin your journey</div>
+                <div
+                    class="scroll-indicator"
+                    aria-label="Scroll hint"
+                    data-target="#offer"
+                >
                     <span class="mouse">
                         <span class="wheel"></span>
                     </span>
                 </div>
             </section>
 
-            <div class="section-separator"></div>
-
             <section id="offer" class="offer section">
                 <div class="container">
-                    <h2 class="section-title text-center animate-on-scroll slide-up">
-                        What <span class="text-gradient">we offer?</span>
+                    <h2
+                        class="section-title text-center animate-on-scroll slide-up"
+                    >
+                        What <span class="text-gradient">We Offer</span>
                     </h2>
 
                     <div class="offer-grid">
@@ -116,71 +139,79 @@
                             </div>
                             <h3>Plugin Development</h3>
                             <p>
-                                High-performance Minecraft plugins built to
-                                last.
+                                High-performance Minecraft plugins designed with
+                                performance in mind. Lightweight, zero bloat,
+                                freemium model, and fully customizable.
                             </p>
                         </div>
 
-                        <div class="offer-card animate-on-scroll zoom-in" style="--delay: 0.2s">
+                        <div
+                            class="offer-card animate-on-scroll zoom-in"
+                            style="--delay: 0.2s"
+                        >
                             <div class="offer-icon" aria-hidden="true">
-                                <i class="fas fa-layer-group red-emoji-icon"></i>
+                                <i
+                                    class="fas fa-layer-group red-emoji-icon"
+                                ></i>
                             </div>
-                            <h3>Quality Setups</h3>
+                            <h3>Premium Setups</h3>
                             <p>
-                                Ready-to-use server setups designed to compete.
+                                Ready-to-use server configurations built for
+                                competitive play. Optimized, clean, and powered
+                                by our high-quality plugins.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <div class="section-separator"></div>
-
-            <section id="stats" class="stats section dark-bg">
+            <section
+                id="stats"
+                class="stats section dark-bg"
+                aria-labelledby="stats-title"
+            >
                 <div class="container">
-                    <h2 class="section-title text-center animate-on-scroll slide-up">
-                        Our <span class="text-gradient">stats</span>
+                    <h2
+                        id="stats-title"
+                        class="section-title text-center animate-on-scroll slide-up"
+                    >
+                        Our <span class="text-gradient">Stats</span>
                     </h2>
                     <div class="stats-grid">
                         <div class="stat-item animate-on-scroll zoom-in">
                             <div class="stat-number">
                                 <span
                                     class="counter discord-member-count"
-                                    data-target="0"
+                                    data-target="1240"
                                     >0</span
                                 >
                             </div>
-                            <div class="stat-label">
-                                Members
-                            </div>
+                            <div class="stat-label">Members</div>
                         </div>
                         <div
                             class="stat-item animate-on-scroll zoom-in"
                             style="--delay: 0.1s"
                         >
                             <div class="stat-number">
-                                <span class="counter" data-target="1">1</span>
+                                <span class="counter" data-target="12">0</span>
                             </div>
-                            <div class="stat-label">
-                                Projects
-                            </div>
+                            <div class="stat-label">Projects</div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            <div class="section-separator"></div>
         </main>
 
-        <footer class="footer">
+        <footer class="footer" role="contentinfo">
             <div class="footer-separator"></div>
             <div class="container footer-container">
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <img
                             src="arsenic.png"
-                            alt="Arsenic.Dev Logo"
+                            alt="Arsenic Development Logo"
                             class="footer-logo-img"
+                            loading="lazy"
                         />
                         <span class="footer-logo-text"
                             >Arsenic<span class="logo-dot">.</span
@@ -195,8 +226,8 @@
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">ToS</a></li>
-                        <li><a href="#">Docs</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Documentation</a></li>
                         <li><a href="#">Tools</a></li>
                     </ul>
                 </div>
@@ -209,21 +240,17 @@
                             aria-label="GitHub"
                             target="_blank"
                             rel="noopener noreferrer"
-                            ><img
-                                src="github.png"
-                                alt="GitHub"
-                                class="footer-social-icon"
-                        /></a>
+                            class="footer-social-icon"
+                            ><i class="fab fa-github"></i
+                        ></a>
                         <a
                             href="https://discord.gg/BewvqAe3jb"
                             aria-label="Discord"
                             target="_blank"
                             rel="noopener noreferrer"
-                            ><img
-                                src="discord.png"
-                                alt="Discord"
-                                class="footer-social-icon"
-                        /></a>
+                            class="footer-social-icon"
+                            ><i class="fab fa-discord"></i
+                        ></a>
                     </div>
                 </div>
             </div>
