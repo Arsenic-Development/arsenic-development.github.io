@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Look up any Minecraft Java player: UUID, skin download, avatar URL, and quick copy fields for server owners and plugin configs."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Skin Grabber | Arsenic Development"
+        />
+        <meta
+            property="og:description"
+            content="Resolve Minecraft usernames to UUIDs, preview skins, and copy URLs for your server stack."
+        />
+        <meta name="twitter:card" content="summary" />
+        <title>Skin Grabber | Arsenic Development</title>
+
+        <link rel="preload" href="assets/arsenic.png" as="image" />
+        <link rel="icon" type="image/png" href="assets/arsenic.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <a href="#main" class="skip-link">Skip to main content</a>
+
+        <header class="header">
+            <div class="header-inner">
+                <div class="header-container">
+                    <a href="index.html" class="logo logo--link" aria-label="Arsenic home">
+                        <img
+                            src="assets/arsenic.png"
+                            alt=""
+                            class="logo-img"
+                            width="26"
+                            height="26"
+                        />
+                        <span class="logo-text">Arsenic</span>
+                    </a>
+
+                    <nav class="nav-menu" aria-label="Main">
+                        <ul class="nav-links">
+                            <li class="nav-item dropdown" id="tools-dropdown">
+                                <a
+                                    href="#"
+                                    class="nav-link nav-link--tools dropdown-toggle"
+                                    aria-expanded="false"
+                                    aria-haspopup="true"
+                                >
+                                    <span class="nav-link-label">Tools</span>
+                                    <i
+                                        class="bi bi-chevron-down dropdown-arrow"
+                                        aria-hidden="true"
+                                    ></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="none">
+                                        <a href="#" role="menuitem"
+                                            ><i
+                                                class="bi bi-palette-fill dropdown-item-icon"
+                                                aria-hidden="true"
+                                            ></i>
+                                            GUI Texture Builder</a
+                                        >
+                                    </li>
+                                    <li role="none">
+                                        <a href="skin-grabber.html" role="menuitem"
+                                            ><i
+                                                class="bi bi-person-square dropdown-item-icon"
+                                                aria-hidden="true"
+                                            ></i>
+                                            Skin Grabber</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link nav-link--doc">
+                                    <i
+                                        class="bi bi-book nav-link-icon"
+                                        aria-hidden="true"
+                                    ></i>
+                                    <span class="nav-link-label"
+                                        >Documentation</span
+                                    >
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main id="main">
+            <section
+                class="tool-page section"
+                aria-labelledby="skin-grabber-title"
+            >
+                <div class="container">
+                    <div class="tool-page-header">
+                        <div
+                            class="section-eyebrow section-eyebrow--center animate-on-scroll slide-up"
+                        >
+                            <span class="section-badge section-badge--red"
+                                >Tools</span
+                            >
+                            <p class="section-lede">
+                                Mojang profile lookup for operators and
+                                developers.
+                            </p>
+                        </div>
+                        <h1 id="skin-grabber-title">
+                            Skin <span class="text-gradient">Grabber</span>
+                        </h1>
+                        <p class="tool-page-lede">
+                            Enter a Minecraft Java Edition username to get the
+                            official UUID, a skin you can download, render
+                            previews, and copy‑paste snippets for heads, web
+                            apps, and plugin configuration.
+                        </p>
+                    </div>
+
+                    <div class="tool-panel animate-on-scroll slide-up">
+                        <form class="tool-form" id="skin-form" autocomplete="off">
+                            <label class="visually-hidden" for="skin-username"
+                                >Minecraft username</label
+                            >
+                            <input
+                                class="tool-input"
+                                id="skin-username"
+                                name="username"
+                                type="text"
+                                placeholder="Minecraft username"
+                                spellcheck="false"
+                                maxlength="16"
+                                required
+                            />
+                            <button type="submit" class="tool-submit">
+                                Look up
+                            </button>
+                        </form>
+                        <p
+                            class="tool-status"
+                            id="skin-status"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                        <div
+                            class="tool-results"
+                            id="skin-results"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" role="contentinfo">
+            <div class="footer-separator"></div>
+            <div class="container footer-container">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img
+                            src="assets/arsenic.png"
+                            alt=""
+                            class="footer-logo-img"
+                            loading="lazy"
+                            width="24"
+                            height="24"
+                        />
+                        <span class="footer-logo-text">Arsenic</span>
+                    </div>
+                    <p class="footer-desc">
+                        Built for performance,<br />
+                        designed for competition.<br />
+                    </p>
+                </div>
+
+                <nav class="footer-col footer-nav-block" aria-label="Footer">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#main">Home</a></li>
+                        <li><a href="skin-grabber.html">Skin Grabber</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-col footer-quick-block">
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-market-icons">
+                        <li>
+                            <a
+                                href="https://modrinth.com"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Modrinth</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.spigotmc.org"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >SpigotMC</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://builtbybit.com"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >BuiltByBit</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://polymart.org"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >Polymart</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-legal-block">
+                    <h4 class="footer-col-title">Legal</h4>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container footer-bottom-container">
+                    <p class="footer-bottom-copy">
+                        &copy; <span id="current-year"></span> Arsenic
+                        Development. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a
+                            href="https://discord.gg/BewvqAe3jb"
+                            aria-label="Discord"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-bottom-icon"
+                            ><i
+                                class="bi bi-discord footer-icon-bs"
+                                aria-hidden="true"
+                            ></i
+                        ></a>
+                        <a
+                            href="https://github.com/Arsenic-Development"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-bottom-icon"
+                            ><i
+                                class="bi bi-github footer-icon-bs"
+                                aria-hidden="true"
+                            ></i
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+        <script src="skin-grabber.js"></script>
+    </body>
+</html>

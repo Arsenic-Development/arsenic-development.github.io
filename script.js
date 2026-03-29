@@ -52,6 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
         closeDropdown();
       }
     });
+
+    toolsDropdown.addEventListener("mouseleave", () => {
+      closeDropdown();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDropdown();
+    });
   }
 
   const observerOptions = {
@@ -135,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       })
-      .catch((err) => {
+      .catch(() => {
         memberCountEl.setAttribute("data-target", "1240");
       });
   }

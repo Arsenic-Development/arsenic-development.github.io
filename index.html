@@ -7,8 +7,39 @@
             name="description"
             content="Arsenic Development - High-performance Minecraft plugins and premium server setups. Lightweight, bloat-free, fully customizable, and built for competition."
         />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#000000" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="Arsenic Development | Minecraft Plugins & Setups"
+        />
+        <meta
+            property="og:description"
+            content="High-performance Minecraft plugins and premium server setups — lightweight, bloat-free, and built for competition."
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Arsenic Development | Minecraft Plugins & Setups"
+        />
+        <meta
+            name="twitter:description"
+            content="High-performance Minecraft plugins and premium server setups for competitive servers."
+        />
 
         <title>Arsenic Development | Minecraft Plugins & Setups</title>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Arsenic Development",
+                "description": "Minecraft plugins and premium server setups focused on performance and competition-ready gameplay.",
+                "url": "https://github.com/Arsenic-Development"
+            }
+        </script>
 
         <link rel="preload" href="assets/arsenic.png" as="image" />
         <link rel="icon" type="image/png" href="assets/arsenic.png" />
@@ -24,7 +55,6 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="fonts/icomoon.css" />
         <link rel="stylesheet" href="styles.css" />
     </head>
 
@@ -51,6 +81,8 @@
                                 <a
                                     href="#"
                                     class="nav-link nav-link--tools dropdown-toggle"
+                                    aria-expanded="false"
+                                    aria-haspopup="true"
                                 >
                                     <span class="nav-link-label">Tools</span>
                                     <i
@@ -58,9 +90,9 @@
                                         aria-hidden="true"
                                     ></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#"
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="none">
+                                        <a href="#" role="menuitem"
                                             ><i
                                                 class="bi bi-palette-fill dropdown-item-icon"
                                                 aria-hidden="true"
@@ -68,8 +100,8 @@
                                             GUI Texture Builder</a
                                         >
                                     </li>
-                                    <li>
-                                        <a href="#"
+                                    <li role="none">
+                                        <a href="skin-grabber.html" role="menuitem"
                                             ><i
                                                 class="bi bi-person-square dropdown-item-icon"
                                                 aria-hidden="true"
@@ -129,7 +161,10 @@
                         class="btn btn-hero"
                         aria-label="Join our Discord"
                     >
-                        Join Our Discord
+                        <span class="btn-hero-icon" aria-hidden="true">
+                            <i class="bi bi-discord"></i>
+                        </span>
+                        <span class="btn-hero-label">Join Our Discord</span>
                     </a>
                 </div>
 
@@ -352,7 +387,7 @@
                     <h4 class="footer-col-title">Navigation</h4>
                     <ul>
                         <li><a href="#main">Home</a></li>
-                        <li><a href="#">Tools</a></li>
+                        <li><a href="skin-grabber.html">Skin Grabber</a></li>
                         <li><a href="#">Documentation</a></li>
                     </ul>
                 </nav>
