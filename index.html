@@ -10,8 +10,8 @@
 
         <title>Arsenic Development | Minecraft Plugins & Setups</title>
 
-        <link rel="preload" href="arsenic.png" as="image" />
-        <link rel="icon" type="image/png" href="arsenic.png" />
+        <link rel="preload" href="assets/arsenic.png" as="image" />
+        <link rel="icon" type="image/png" href="assets/arsenic.png" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,22 +34,22 @@
         <header class="header">
             <div class="header-inner">
                 <div class="header-container">
-                    <a href="#" class="logo">
+                    <div class="logo" role="group" aria-label="Arsenic">
                         <img
-                            src="arsenic.png"
+                            src="assets/arsenic.png"
                             alt=""
                             class="logo-img"
                             width="26"
                             height="26"
                         />
                         <span class="logo-text">Arsenic</span>
-                    </a>
+                    </div>
 
                     <nav class="nav-menu" aria-label="Main">
                         <ul class="nav-links">
                             <li class="nav-item dropdown" id="tools-dropdown">
-                                <a href="#" class="nav-link dropdown-toggle">
-                                    Tools
+                                <a href="#" class="nav-link nav-link--tools dropdown-toggle">
+                                    <span class="nav-link-label">Tools</span>
                                     <i
                                         class="bi bi-chevron-down dropdown-arrow"
                                         aria-hidden="true"
@@ -263,36 +263,60 @@
                     >
                         Frequently Asked <span class="text-gradient">Questions</span>
                     </h2>
-                    <dl class="faq-list">
-                        <div class="faq-item animate-on-scroll slide-up">
-                            <dt class="faq-question">What does Arsenic build?</dt>
-                            <dd class="faq-answer">
+                    <div class="faq-list">
+                        <details class="faq-item animate-on-scroll slide-up">
+                            <summary class="faq-summary">
+                                <span class="faq-question-text"
+                                    >What does Arsenic build?</span
+                                >
+                                <i
+                                    class="bi bi-chevron-down faq-chevron"
+                                    aria-hidden="true"
+                                ></i>
+                            </summary>
+                            <p class="faq-answer">
                                 High-performance Minecraft plugins and curated
                                 server setups focused on competition-ready
                                 gameplay.
-                            </dd>
-                        </div>
-                        <div
+                            </p>
+                        </details>
+                        <details
                             class="faq-item animate-on-scroll slide-up"
                             style="--delay: 0.08s"
                         >
-                            <dt class="faq-question">How do I get support?</dt>
-                            <dd class="faq-answer">
+                            <summary class="faq-summary">
+                                <span class="faq-question-text"
+                                    >How do I get support?</span
+                                >
+                                <i
+                                    class="bi bi-chevron-down faq-chevron"
+                                    aria-hidden="true"
+                                ></i>
+                            </summary>
+                            <p class="faq-answer">
                                 Join our Discord — it’s the fastest place for
                                 questions, updates, and releases.
-                            </dd>
-                        </div>
-                        <div
+                            </p>
+                        </details>
+                        <details
                             class="faq-item animate-on-scroll slide-up"
                             style="--delay: 0.16s"
                         >
-                            <dt class="faq-question">Are plugins free?</dt>
-                            <dd class="faq-answer">
+                            <summary class="faq-summary">
+                                <span class="faq-question-text"
+                                    >Are plugins free?</span
+                                >
+                                <i
+                                    class="bi bi-chevron-down faq-chevron"
+                                    aria-hidden="true"
+                                ></i>
+                            </summary>
+                            <p class="faq-answer">
                                 We use a mix of free and premium resources;
                                 details are posted with each product or release.
-                            </dd>
-                        </div>
-                    </dl>
+                            </p>
+                        </details>
+                    </div>
                 </div>
             </section>
         </main>
@@ -303,10 +327,12 @@
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <img
-                            src="arsenic.png"
-                            alt="Arsenic Development Logo"
+                            src="assets/arsenic.png"
+                            alt=""
                             class="footer-logo-img"
                             loading="lazy"
+                            width="24"
+                            height="24"
                         />
                         <span class="footer-logo-text">Arsenic</span>
                     </div>
@@ -334,19 +360,8 @@
                                 class="footer-market-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                >Modrinth</a
                             >
-                                <img
-                                    src="https://cdn.simpleicons.org/modrinth/ffffff"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                    loading="lazy"
-                                    class="footer-market-img"
-                                />
-                                <span class="footer-market-name"
-                                    >Modrinth</span
-                                >
-                            </a>
                         </li>
                         <li>
                             <a
@@ -354,19 +369,8 @@
                                 class="footer-market-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                >SpigotMC</a
                             >
-                                <img
-                                    src="https://cdn.simpleicons.org/spigotmc/ffffff"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                    loading="lazy"
-                                    class="footer-market-img"
-                                />
-                                <span class="footer-market-name"
-                                    >SpigotMC</span
-                                >
-                            </a>
                         </li>
                         <li>
                             <a
@@ -374,19 +378,8 @@
                                 class="footer-market-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                >BuiltByBit</a
                             >
-                                <img
-                                    src="https://cdn.simpleicons.org/builtbybit/ffffff"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                    loading="lazy"
-                                    class="footer-market-img"
-                                />
-                                <span class="footer-market-name"
-                                    >BuiltByBit</span
-                                >
-                            </a>
                         </li>
                         <li>
                             <a
@@ -394,19 +387,8 @@
                                 class="footer-market-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                >Polymart</a
                             >
-                                <img
-                                    src="assets/polymart.svg"
-                                    alt=""
-                                    width="22"
-                                    height="22"
-                                    loading="lazy"
-                                    class="footer-market-img footer-market-img--local"
-                                />
-                                <span class="footer-market-name"
-                                    >Polymart</span
-                                >
-                            </a>
                         </li>
                     </ul>
                 </div>
