@@ -90,15 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const skin = decoded.textures?.SKIN;
     const cape = decoded.textures?.CAPE;
-    const model =
-      skin?.metadata?.model === "slim"
-        ? "Slim (Alex-style arms)"
-        : "Wide (Steve-style arms)";
+    const isSlim = skin?.metadata?.model === "slim";
+    const model = isSlim ? "Slim (Alex)" : "Normal (Steve)";
+    const modelKey = isSlim ? "slim" : "wide";
     const capeLine = cape?.url
       ? "Linked on this Mojang profile"
       : "None on this profile";
     return {
       model,
+      modelKey,
       capeLine,
       overlayRegions: DEFAULT_OVERLAY_REGIONS,
       skinTextureUrl: player.skin_texture || skin?.url || null,
@@ -468,27 +468,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      const cmds = document.createElement("div");
-      cmds.className = "tool-commands";
-      const h3 = document.createElement("h3");
-      h3.textContent = "Server / setup hints";
-      const hint = document.createElement("p");
-      hint.className = "tool-page-lede";
-      hint.style.margin = "0 0 0.75rem";
-      hint.style.fontSize = "0.84rem";
-      hint.textContent =
-        "Use the UUID or skin URL in LuckPerms, skinsrestorer, auth plugins, bots, or custom resources. Adjust /give syntax for your Minecraft version.";
-      cmds.append(h3, hint);
-      addCopyField(
-        cmds,
-        "Example /give player head (older NBT style)",
-        headCmd,
-      );
-      addCopyField(
-        cmds,
-        "Avatar URL (plugins, sites, Discord bots)",
-        avatarUrl,
-      );
+      function craftheadPreviewUrl(uuidDashed, mode) {
+        return mode === "slim"
+          ? `https://crafthead.net/body/${uuidDashed}/alex`
+          : `https://crafthead.net/body/${uuidDashed}`;
+      }
 
       const dlRow = document.createElement("div");
       dlRow.className = "tool-dl-row";
@@ -529,33 +513,52 @@ document.addEventListener("DOMContentLoaded", () => {
         '<i class="bi bi-link-45deg" aria-hidden="true"></i> Open avatar';
 
       dlRow.append(btnDownload, aAvatar);
-      meta.append(dlRow, cmds);
 
-      const skinWrap = document.createElement("div");
-      skinWrap.className = "tool-skin-wrap";
-      const img = document.createElement("img");
-      img.src = renderUrl;
-      img.alt = `Skin preview for ${name}`;
-      img.className = "tool-skin-img";
-      img.width = 120;
-      img.height = 240;
-      img.loading = "lazy";
-      const previewFallbacks = [
-        `https://visage.surgeplay.com/bust/128/${dashed}`,
-        `https://minotar.net/avatar/${encodeURIComponent(name)}/100.png`,
-      ];
-      let previewFi = 0;
-      img.addEventListener("error", () => {
-        if (previewFi < previewFallbacks.length) {
-          img.src = previewFallbacks[previewFi];
-          previewFi += 1;
-        }
-      });
+      const cmds = document.createElement("div");
+      cmds.className = "tool-commands";
+      const h3 = document.createElement("h3");
+      h3.textContent = "Server / setup hints";
+      const hint = document.createElement("p");
+      hint.className = "tool-page-lede";
+      hint.style.margin = "0 0 0.75rem";
+      hint.style.fontSize = "0.84rem";
+      hint.textContent =
+        "Use the UUID or skin URL in LuckPerms, skinsrestorer, auth plugins, bots, or custom resources. Adjust /give syntax for your Minecraft version.";
+      cmds.append(h3, hint);
+      addCopyField(
+        cmds,
+        "Example /give player head (older NBT style)",
+        headCmd,
+      );
+      addCopyField(
+        cmds,
+        "Avatar URL (plugins, sites, Discord bots)",
+        avatarUrl,
+      );
 
       const layersBox = document.createElement("div");
       layersBox.className = "tool-skin-layers";
       const lh3 = document.createElement("h3");
       lh3.textContent = "Skin layers";
+
+      const toggleWrap = document.createElement("div");
+      toggleWrap.className = "tool-model-toggle";
+      const toggleLabel = document.createElement("span");
+      toggleLabel.className = "tool-model-toggle-label";
+      toggleLabel.textContent = "Preview model";
+      const btns = document.createElement("div");
+      btns.className = "tool-model-toggle-btns";
+      const normBtn = document.createElement("button");
+      normBtn.type = "button";
+      normBtn.className = "tool-model-btn";
+      normBtn.textContent = "Normal";
+      const slimBtn = document.createElement("button");
+      slimBtn.type = "button";
+      slimBtn.className = "tool-model-btn";
+      slimBtn.textContent = "Slim";
+      btns.append(normBtn, slimBtn);
+      toggleWrap.append(toggleLabel, btns);
+
       const ldl = document.createElement("dl");
 
       const addLayerRow = (term, defText) => {
@@ -568,8 +571,8 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       addLayerRow(
-        "Arm model",
-        layerMeta?.model ?? "Unknown (Mojang textures not retrieved)",
+        "Arm model (Mojang profile)",
+        layerMeta?.model ?? "Unknown (textures not retrieved)",
       );
       addLayerRow("Cape", layerMeta?.capeLine ?? "Unknown");
       const layoutDd = addLayerRow(
@@ -589,8 +592,65 @@ document.addEventListener("DOMContentLoaded", () => {
       ovDd.append(ovUl);
       ldl.append(ovDt, ovDd);
 
-      layersBox.append(lh3, ldl);
-      skinWrap.append(img, layersBox);
+      layersBox.append(lh3, toggleWrap, ldl);
+
+      const hintsSplit = document.createElement("div");
+      hintsSplit.className = "tool-hints-split";
+      hintsSplit.append(cmds, layersBox);
+
+      meta.append(dlRow, hintsSplit);
+
+      const skinWrap = document.createElement("div");
+      skinWrap.className = "tool-skin-wrap";
+      const img = document.createElement("img");
+      img.alt = `Skin preview for ${name}`;
+      img.className = "tool-skin-img";
+      img.width = 120;
+      img.height = 240;
+      img.loading = "lazy";
+
+      function buildPreviewFallbacks(mode) {
+        const wide = [
+          craftheadPreviewUrl(dashed, "wide"),
+          renderUrl,
+          `https://mc-heads.net/body/${dashed}/128`,
+          `https://visage.surgeplay.com/bust/128/${dashed}`,
+        ];
+        const slim = [
+          craftheadPreviewUrl(dashed, "slim"),
+          craftheadPreviewUrl(dashed, "wide"),
+          renderUrl,
+          `https://mc-heads.net/body/${dashed}/128`,
+        ];
+        return mode === "slim" ? slim : wide;
+      }
+
+      let previewMode = layerMeta?.modelKey ?? "wide";
+      let previewFi = 0;
+      let previewChain = buildPreviewFallbacks(previewMode);
+
+      function applyPreviewMode(mode) {
+        previewMode = mode === "slim" ? "slim" : "wide";
+        normBtn.classList.toggle("is-active", previewMode === "wide");
+        slimBtn.classList.toggle("is-active", previewMode === "slim");
+        previewFi = 0;
+        previewChain = buildPreviewFallbacks(previewMode);
+        img.src = previewChain[0];
+      }
+
+      img.addEventListener("error", () => {
+        previewFi += 1;
+        if (previewFi < previewChain.length) {
+          img.src = previewChain[previewFi];
+        }
+      });
+
+      normBtn.addEventListener("click", () => applyPreviewMode("wide"));
+      slimBtn.addEventListener("click", () => applyPreviewMode("slim"));
+
+      applyPreviewMode(layerMeta?.modelKey ?? "wide");
+
+      skinWrap.append(img);
 
       const probeUrl = layerMeta?.skinTextureUrl || skinUrl;
       probeSkinTextureMeta(probeUrl).then((hint) => {
