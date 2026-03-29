@@ -184,9 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function fetchMojangProfile(username) {
     try {
-      const res = await fetch(
-        mojangProfileBase + encodeURIComponent(username),
-      );
+      const res = await fetch(mojangProfileBase + encodeURIComponent(username));
       const text = await res.text();
 
       if (res.status === 404 || res.status === 204 || res.status === 400) {
