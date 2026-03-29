@@ -11,7 +11,7 @@
         <meta property="og:type" content="website" />
         <meta
             property="og:title"
-            content="Skin Grabber | Arsenic Development"
+            content="Arsenic Development | Skin Grabber"
         />
         <meta
             property="og:description"
@@ -144,7 +144,12 @@
                         <form
                             class="tool-form"
                             id="skin-form"
+                            method="get"
+                            action="#"
                             autocomplete="off"
+                            data-bwignore
+                            data-lpignore="true"
+                            data-1p-ignore
                         >
                             <label class="visually-hidden" for="skin-username"
                                 >Minecraft username</label
@@ -152,12 +157,18 @@
                             <input
                                 class="tool-input"
                                 id="skin-username"
-                                name="username"
-                                type="text"
+                                name="mc-player-lookup"
+                                type="search"
                                 placeholder="Minecraft username"
                                 spellcheck="false"
                                 maxlength="16"
                                 required
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="none"
+                                data-bwignore
+                                data-lpignore="true"
+                                data-1p-ignore
                             />
                             <button type="submit" class="tool-submit">
                                 Look up
@@ -199,6 +210,8 @@
                         designed for competition.<br />
                     </p>
                 </div>
+
+                <div class="footer-divider" aria-hidden="true"></div>
 
                 <nav class="footer-col footer-nav-block" aria-label="Footer">
                     <h4 class="footer-col-title">Navigation</h4>

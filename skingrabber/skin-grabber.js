@@ -34,32 +34,74 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /**
-   * @returns {Promise<{ id: string, name: string } | { notFound: true } | null>}
-   */
-  async function resolveJavaProfile(username) {
+  async function fetchMojangProfile(username) {
     try {
-      const res = await fetch(mojangProfileBase + encodeURIComponent(username));
+      const res = await fetch(
+        mojangProfileBase + encodeURIComponent(username),
+      );
       const text = await res.text();
 
-      if (res.status === 404 || res.status === 204) {
+      if (res.status === 404 || res.status === 204 || res.status === 400) {
         return { notFound: true };
       }
 
       if (res.ok) {
         const data = parseJsonSafe(text);
         if (data?.id && data?.name) {
-          return { id: String(data.id).replace(/-/g, ""), name: data.name };
+          return {
+            id: String(data.id).replace(/-/g, ""),
+            name: data.name,
+          };
         }
       }
+    } catch {
+      /* CORS, offline, file://, etc. */
+    }
+    return null;
+  }
 
-      if (res.status === 400) {
-        return { notFound: true };
+  async function fetchPlayerdbProfile(username) {
+    try {
+      const res = await fetch(
+        `https://playerdb.co/api/player/minecraft/${encodeURIComponent(username)}`,
+      );
+      const text = await res.text();
+      const data = parseJsonSafe(text);
+
+      if (!data) {
+        if (res.status === 404 || res.status === 400) {
+          return { notFound: true };
+        }
+        return null;
+      }
+
+      if (data.success === false) {
+        const code = String(data.code || "").toLowerCase();
+        if (
+          code.includes("not_found") ||
+          code.includes("not found") ||
+          code === "player.not_found"
+        ) {
+          return { notFound: true };
+        }
+        return null;
+      }
+
+      const p = data.data?.player;
+      const raw =
+        (p?.raw_id && String(p.raw_id).replace(/-/g, "")) ||
+        (p?.id && String(p.id).replace(/-/g, ""));
+      const name = p?.username;
+      if (raw && raw.length === 32 && name) {
+        return { id: raw, name };
       }
     } catch {
-      /* fall through to Ashcon */
+      /* ignore */
     }
+    return null;
+  }
 
+  async function fetchAshconProfile(username) {
     try {
       const res = await fetch(
         `https://api.ashcon.app/mojang/user/${encodeURIComponent(username)}`,
@@ -90,6 +132,37 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch {
       return null;
     }
+  }
+
+  /**
+   * @returns {Promise<{ id: string, name: string } | { notFound: true } | null>}
+   */
+  async function resolveJavaProfile(username) {
+    const mojang = await fetchMojangProfile(username);
+    if (mojang?.notFound) {
+      return { notFound: true };
+    }
+    if (mojang?.id && mojang?.name) {
+      return mojang;
+    }
+
+    const playerdb = await fetchPlayerdbProfile(username);
+    if (playerdb?.notFound) {
+      return { notFound: true };
+    }
+    if (playerdb?.id && playerdb?.name) {
+      return playerdb;
+    }
+
+    const ashcon = await fetchAshconProfile(username);
+    if (ashcon?.notFound) {
+      return { notFound: true };
+    }
+    if (ashcon?.id && ashcon?.name) {
+      return ashcon;
+    }
+
+    return null;
   }
 
   async function copyText(text, button) {
@@ -177,8 +250,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (!profile) {
+        const fileHint =
+          window.location.protocol === "file:"
+            ? " If you opened this page as a local file, also try Live Server or any http:// host."
+            : "";
         setStatus(
-          "Could not reach profile services. If you opened this file from disk, use a local web server (e.g. Live Server) or deploy the site — browsers block some API calls from file://.",
+          `Could not reach any profile API (offline, firewall, or temporary outage).${fileHint}`,
           true,
         );
         return;
