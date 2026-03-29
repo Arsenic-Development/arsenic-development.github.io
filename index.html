@@ -37,13 +37,12 @@
                     <a href="#" class="logo">
                         <img
                             src="arsenic.png"
-                            alt="Arsenic.Dev Logo"
+                            alt=""
                             class="logo-img"
+                            width="26"
+                            height="26"
                         />
-                        <span class="logo-text"
-                            >Arsenic<span class="logo-dot">.</span
-                            ><span class="logo-accent">Dev</span></span
-                        >
+                        <span class="logo-text">Arsenic</span>
                     </a>
 
                     <nav class="nav-menu" aria-label="Main">
@@ -78,13 +77,13 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" class="nav-link"
-                                    >Documentation
+                                <a href="#" class="nav-link nav-link--doc">
                                     <i
                                         class="bi bi-book nav-link-icon"
                                         aria-hidden="true"
-                                    ></i
-                                ></a>
+                                    ></i>
+                                    <span class="nav-link-label">Documentation</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>
@@ -97,6 +96,12 @@
                 <div class="hero-backdrop" aria-hidden="true"></div>
 
                 <div class="container hero-content animate-on-scroll slide-up">
+                    <div class="section-eyebrow animate-on-scroll slide-up">
+                        <span class="section-badge">Intro</span>
+                        <p class="section-lede">
+                            Who we are and what you can do on this site.
+                        </p>
+                    </div>
                     <p class="hero-badge" role="status">
                         <span class="hero-badge-pulse" aria-hidden="true"></span>
                         Website still in development
@@ -120,24 +125,29 @@
                     </a>
                 </div>
 
-                <div class="scroll-cta" aria-hidden="false">
+                <div class="scroll-cta" aria-hidden="true">
                     <div class="scroll-hint">Scroll to begin your journey</div>
-                    <button
-                        type="button"
-                        class="scroll-indicator"
-                        aria-label="Scroll to next section"
-                        data-target="#offer"
-                    >
+                    <span class="scroll-indicator" aria-hidden="true">
                         <i
                             class="bi bi-chevron-down scroll-indicator-arrow"
                             aria-hidden="true"
                         ></i>
-                    </button>
+                    </span>
                 </div>
             </section>
 
             <section id="offer" class="offer section">
                 <div class="container">
+                    <div
+                        class="section-eyebrow section-eyebrow--center animate-on-scroll slide-up"
+                    >
+                        <span class="section-badge section-badge--red"
+                            >Services</span
+                        >
+                        <p class="section-lede">
+                            Plugins and setups we build and maintain for servers.
+                        </p>
+                    </div>
                     <h2
                         class="section-title text-center animate-on-scroll slide-up"
                     >
@@ -193,10 +203,20 @@
 
             <section
                 id="stats"
-                class="stats section dark-bg"
+                class="stats section"
                 aria-labelledby="stats-title"
             >
                 <div class="container">
+                    <div
+                        class="section-eyebrow section-eyebrow--center animate-on-scroll slide-up"
+                    >
+                        <span class="section-badge section-badge--red"
+                            >Community</span
+                        >
+                        <p class="section-lede">
+                            Live numbers from our Discord and shipped work.
+                        </p>
+                    </div>
                     <h2
                         id="stats-title"
                         class="section-title text-center animate-on-scroll slide-up"
@@ -219,11 +239,60 @@
                             style="--delay: 0.1s"
                         >
                             <div class="stat-number">
-                                <span class="counter" data-target="12">0</span>
+                                <span class="counter" data-target="1">0</span>
                             </div>
                             <div class="stat-label">Projects</div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section id="faq" class="faq section" aria-labelledby="faq-title">
+                <div class="container">
+                    <div
+                        class="section-eyebrow section-eyebrow--center animate-on-scroll slide-up"
+                    >
+                        <span class="section-badge section-badge--red">FAQ</span>
+                        <p class="section-lede">
+                            Quick answers before you join or buy.
+                        </p>
+                    </div>
+                    <h2
+                        id="faq-title"
+                        class="section-title text-center animate-on-scroll slide-up"
+                    >
+                        Frequently Asked <span class="text-gradient">Questions</span>
+                    </h2>
+                    <dl class="faq-list">
+                        <div class="faq-item animate-on-scroll slide-up">
+                            <dt class="faq-question">What does Arsenic build?</dt>
+                            <dd class="faq-answer">
+                                High-performance Minecraft plugins and curated
+                                server setups focused on competition-ready
+                                gameplay.
+                            </dd>
+                        </div>
+                        <div
+                            class="faq-item animate-on-scroll slide-up"
+                            style="--delay: 0.08s"
+                        >
+                            <dt class="faq-question">How do I get support?</dt>
+                            <dd class="faq-answer">
+                                Join our Discord — it’s the fastest place for
+                                questions, updates, and releases.
+                            </dd>
+                        </div>
+                        <div
+                            class="faq-item animate-on-scroll slide-up"
+                            style="--delay: 0.16s"
+                        >
+                            <dt class="faq-question">Are plugins free?</dt>
+                            <dd class="faq-answer">
+                                We use a mix of free and premium resources;
+                                details are posted with each product or release.
+                            </dd>
+                        </div>
+                    </dl>
                 </div>
             </section>
         </main>
@@ -239,10 +308,7 @@
                             class="footer-logo-img"
                             loading="lazy"
                         />
-                        <span class="footer-logo-text"
-                            >Arsenic<span class="logo-dot">.</span
-                            ><span class="logo-accent">Dev</span></span
-                        >
+                        <span class="footer-logo-text">Arsenic</span>
                     </div>
                     <p class="footer-desc">
                         Built for performance,<br />
@@ -330,12 +396,12 @@
                                 rel="noopener noreferrer"
                             >
                                 <img
-                                    src="https://cdn.jsdelivr.net/npm/simple-icons/icons/polymart.svg"
+                                    src="assets/polymart.svg"
                                     alt=""
                                     width="22"
                                     height="22"
                                     loading="lazy"
-                                    class="footer-market-img footer-market-img--svg"
+                                    class="footer-market-img footer-market-img--local"
                                 />
                                 <span class="footer-market-name"
                                     >Polymart</span

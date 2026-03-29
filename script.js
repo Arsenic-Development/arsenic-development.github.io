@@ -29,22 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     handleScroll();
   }
 
-  const scrollIndicator = document.querySelector(".scroll-indicator");
-  if (scrollIndicator) {
-    scrollIndicator.addEventListener("click", (e) => {
-      const targetSelector =
-        scrollIndicator.getAttribute("data-target") || "#offer";
-      const targetEl = document.querySelector(targetSelector);
-      if (targetEl) {
-        e.preventDefault();
-        targetEl.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    });
-  }
-
   const toolsDropdown = document.getElementById("tools-dropdown");
   if (toolsDropdown) {
     const toggle = toolsDropdown.querySelector(".dropdown-toggle");
