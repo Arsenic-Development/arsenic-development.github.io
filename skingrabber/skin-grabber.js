@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("skin-form");
   const input = document.getElementById("skin-username");
   const statusEl = document.getElementById("skin-status");
+  const validationEl = document.getElementById("skin-validation");
   const resultsEl = document.getElementById("skin-results");
   const submitBtn = form?.querySelector('button[type="submit"]');
 
@@ -24,6 +25,26 @@ document.addEventListener("DOMContentLoaded", () => {
     resultsEl.classList.remove("is-visible");
     resultsEl.replaceChildren();
   }
+
+  function showValidationError(message) {
+    if (validationEl) {
+      validationEl.textContent = message;
+      validationEl.hidden = false;
+    }
+    input.classList.add("tool-input--invalid");
+  }
+
+  function clearValidationError() {
+    if (validationEl) {
+      validationEl.hidden = true;
+      validationEl.textContent = "";
+    }
+    input.classList.remove("tool-input--invalid");
+  }
+
+  input.addEventListener("input", () => {
+    clearValidationError();
+  });
 
   function parseJsonSafe(text) {
     if (!text || !text.trim()) return null;
@@ -222,18 +243,25 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const raw = input.value.trim().toLowerCase();
+    clearValidationError();
+
     if (!raw) {
-      setStatus("Enter a Minecraft username.", true);
+      showValidationError(
+        "Type a Minecraft username first — 3 to 16 letters, numbers, or underscores.",
+      );
+      setStatus("");
       clearResults();
+      input.focus();
       return;
     }
 
     if (!USERNAME_RE.test(raw)) {
-      setStatus(
-        "Use 3–16 characters: letters, numbers, and underscores only (Java usernames; case is ignored).",
-        true,
+      showValidationError(
+        "That username format isn’t valid. Use 3–16 characters: a–z, 0–9, or _ only.",
       );
+      setStatus("");
       clearResults();
+      input.focus();
       return;
     }
 
@@ -263,9 +291,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const { id, name } = profile;
       const dashed = uuidWithDashes(id);
-      const skinUrl = `https://crafatar.com/skins/${dashed}`;
-      const renderUrl = `https://crafatar.com/renders/body/${dashed}?scale=4&overlay`;
-      const avatarUrl = `https://crafatar.com/avatars/${dashed}?size=128&overlay`;
+      const skinUrl = `https://mc-heads.net/skin/${dashed}`;
+      const renderUrl = `https://mc-heads.net/body/${dashed}/128`;
+      const avatarUrl = `https://mc-heads.net/avatar/${dashed}/128`;
 
       const history = await fetchNameHistory(id);
       const headCmd = `/give @p minecraft:player_head{SkullOwner:"${name}"} 1`;
@@ -361,6 +389,17 @@ document.addEventListener("DOMContentLoaded", () => {
       img.width = 120;
       img.height = 240;
       img.loading = "lazy";
+      const previewFallbacks = [
+        `https://visage.surgeplay.com/bust/128/${dashed}`,
+        `https://minotar.net/avatar/${encodeURIComponent(name)}/100.png`,
+      ];
+      let previewFi = 0;
+      img.addEventListener("error", () => {
+        if (previewFi < previewFallbacks.length) {
+          img.src = previewFallbacks[previewFi];
+          previewFi += 1;
+        }
+      });
       skinWrap.append(img);
 
       grid.append(meta, skinWrap);

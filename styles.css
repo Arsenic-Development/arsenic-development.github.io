@@ -923,7 +923,7 @@
         padding-bottom: 1.35rem;
     }
 
-    .tool-panel:hover {
+    .tool-panel:hover:not(:has(.tool-input:focus)) {
         border-color: rgba(255, 0, 0, 0.15);
     }
 
@@ -964,8 +964,32 @@
     .tool-input:focus,
     .tool-input:focus-visible {
         outline: none;
-        border-color: rgba(255, 0, 0, 0.45);
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12);
+        border-color: var(--color-primary);
+        box-shadow: none;
+    }
+
+    .tool-input--invalid {
+        border-color: rgba(255, 90, 90, 0.65);
+    }
+
+    .tool-validation {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-top: 0.65rem;
+        padding: 0.65rem 0.9rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 60, 60, 0.4);
+        background: rgba(255, 0, 0, 0.07);
+        color: #ffc9c9;
+        font-size: 0.84rem;
+        font-weight: 600;
+        line-height: 1.45;
+        font-family: var(--font-sans);
+    }
+
+    .tool-validation[hidden] {
+        display: none;
     }
 
     .tool-submit {
@@ -1170,32 +1194,26 @@
         text-align: center;
     }
 
+    :focus,
     :focus-visible {
-        outline: 3px solid var(--color-primary);
-        outline-offset: 4px;
-        border-radius: var(--radius-sm);
-    }
-
-    .btn-hero:focus-visible {
-        outline: none;
-        outline-offset: 0;
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.45);
-        border-radius: 1.25rem;
+        outline: none !important;
+        box-shadow: none !important;
     }
 
     .btn-hero:focus-visible .btn-hero-icon {
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
+    .tool-input:focus,
     .tool-input:focus-visible {
-        outline: none;
-        outline-offset: 0;
+        outline: none !important;
+        border-color: var(--color-primary);
+        box-shadow: none !important;
     }
 
-    .tool-submit:focus-visible {
-        outline: none;
-        outline-offset: 0;
-        box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.35);
+    .tool-input--invalid:focus,
+    .tool-input--invalid:focus-visible {
+        border-color: rgba(255, 90, 90, 0.65);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1319,18 +1337,20 @@
 
 @media (min-width: 900px) {
     .footer-container {
-        grid-template-columns: minmax(0, 1.4fr) auto repeat(3, minmax(0, 1fr));
-        column-gap: 1.5rem;
-        align-items: stretch;
+        grid-template-columns: minmax(0, 1.35fr) 1px repeat(3, minmax(0, 1fr));
+        grid-template-areas: "brand divider nav quick legal";
+        column-gap: 1.25rem;
+        align-items: start;
         justify-items: stretch;
         text-align: inherit;
     }
 
     .footer-divider {
+        grid-area: divider;
         display: block;
         width: 1px;
         align-self: stretch;
-        min-height: 3.5rem;
+        min-height: 4rem;
         margin: 0;
         padding: 0;
         background: rgba(255, 255, 255, 0.08);
@@ -1339,6 +1359,7 @@
     }
 
     .footer-brand {
+        grid-area: brand;
         justify-self: start;
         text-align: left;
         max-width: none;
@@ -1347,9 +1368,24 @@
         border-right: none;
     }
 
-    .footer-nav-block,
-    .footer-quick-block,
+    .footer-nav-block {
+        grid-area: nav;
+        justify-self: center;
+        width: 100%;
+        max-width: 13rem;
+        text-align: center;
+    }
+
+    .footer-quick-block {
+        grid-area: quick;
+        justify-self: center;
+        width: 100%;
+        max-width: 13rem;
+        text-align: center;
+    }
+
     .footer-legal-block {
+        grid-area: legal;
         justify-self: center;
         width: 100%;
         max-width: 13rem;
