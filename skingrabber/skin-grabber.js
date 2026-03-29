@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const mojangProfileBase =
     "https://api.mojang.com/users/profiles/minecraft/";
+  const USERNAME_RE = /^[a-z0-9_]{3,16}$/;
 
   function uuidWithDashes(id) {
     if (!id || id.length !== 32) return id;
@@ -23,6 +24,73 @@ document.addEventListener("DOMContentLoaded", () => {
   function clearResults() {
     resultsEl.classList.remove("is-visible");
     resultsEl.replaceChildren();
+  }
+
+  function parseJsonSafe(text) {
+    if (!text || !text.trim()) return null;
+    try {
+      return JSON.parse(text);
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * @returns {Promise<{ id: string, name: string } | { notFound: true } | null>}
+   */
+  async function resolveJavaProfile(username) {
+    try {
+      const res = await fetch(mojangProfileBase + encodeURIComponent(username));
+      const text = await res.text();
+
+      if (res.status === 404 || res.status === 204) {
+        return { notFound: true };
+      }
+
+      if (res.ok) {
+        const data = parseJsonSafe(text);
+        if (data?.id && data?.name) {
+          return { id: String(data.id).replace(/-/g, ""), name: data.name };
+        }
+      }
+
+      if (res.status === 400) {
+        return { notFound: true };
+      }
+    } catch {
+      /* fall through to Ashcon */
+    }
+
+    try {
+      const res = await fetch(
+        `https://api.ashcon.app/mojang/user/${encodeURIComponent(username)}`,
+      );
+      const text = await res.text();
+
+      if (res.status === 404) {
+        return { notFound: true };
+      }
+
+      if (!res.ok) {
+        return null;
+      }
+
+      const data = parseJsonSafe(text);
+      const rawUuid = data?.uuid;
+      const name = data?.username ?? data?.name;
+      if (!rawUuid || !name) {
+        return null;
+      }
+
+      const id = String(rawUuid).replace(/-/g, "");
+      if (id.length !== 32) {
+        return null;
+      }
+
+      return { id, name };
+    } catch {
+      return null;
+    }
   }
 
   async function copyText(text, button) {
@@ -71,7 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
         `https://api.mojang.com/user/profiles/${encodeURIComponent(uuidCompact)}/names`,
       );
       if (!res.ok) return null;
-      const data = await res.json();
+      const text = await res.text();
+      const data = parseJsonSafe(text);
       return Array.isArray(data) ? data : null;
     } catch {
       return null;
@@ -80,9 +149,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const raw = input.value.trim();
+    const raw = input.value.trim().toLowerCase();
     if (!raw) {
       setStatus("Enter a Minecraft username.", true);
+      clearResults();
+      return;
+    }
+
+    if (!USERNAME_RE.test(raw)) {
+      setStatus(
+        "Use 3–16 characters: letters, numbers, and underscores only (Java usernames; case is ignored).",
+        true,
+      );
       clearResults();
       return;
     }
@@ -92,26 +170,22 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.disabled = true;
 
     try {
-      const res = await fetch(
-        mojangProfileBase + encodeURIComponent(raw),
-      );
-      if (res.status === 404 || res.status === 204) {
+      const profile = await resolveJavaProfile(raw);
+
+      if (profile?.notFound) {
         setStatus("Player not found. Check the username and try again.", true);
         return;
       }
-      if (!res.ok) {
-        setStatus("Could not reach Mojang. Try again in a moment.", true);
+
+      if (!profile) {
+        setStatus(
+          "Could not reach profile services. If you opened this file from disk, use a local web server (e.g. Live Server) or deploy the site — browsers block some API calls from file://.",
+          true,
+        );
         return;
       }
 
-      const data = await res.json();
-      const name = data?.name;
-      const id = data?.id;
-      if (!name || !id) {
-        setStatus("Unexpected response from Mojang.", true);
-        return;
-      }
-
+      const { id, name } = profile;
       const dashed = uuidWithDashes(id);
       const skinUrl = `https://crafatar.com/skins/${dashed}`;
       const renderUrl = `https://crafatar.com/renders/body/${dashed}?scale=4&overlay`;
@@ -139,9 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (history && history.length > 0) {
         const names = history
           .map((entry) =>
-            typeof entry === "string"
-              ? entry
-              : entry.name || "",
+            typeof entry === "string" ? entry : entry.name || "",
           )
           .filter(Boolean);
         if (names.length > 0) {
@@ -215,7 +287,10 @@ document.addEventListener("DOMContentLoaded", () => {
       resultsEl.append(grid);
       resultsEl.classList.add("is-visible");
     } catch {
-      setStatus("Network error. Check your connection and try again.", true);
+      setStatus(
+        "Something went wrong while loading the profile. Try again.",
+        true,
+      );
     } finally {
       submitBtn.disabled = false;
     }
