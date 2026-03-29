@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = parseInt(el.getAttribute("data-target"), 10) || 0;
     if (target === 0) return;
 
-    const duration = 1800;
+    const duration = target <= 10 ? 650 : 1800;
     const start = 0;
     const startTime = performance.now();
 
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
-      const currentValue = Math.floor(start + (target - start) * eased);
+      const currentValue = Math.round(start + (target - start) * eased);
 
       el.textContent = currentValue.toLocaleString("en-US");
 

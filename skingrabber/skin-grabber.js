@@ -536,48 +536,6 @@ document.addEventListener("DOMContentLoaded", () => {
         avatarUrl,
       );
 
-      const layersBox = document.createElement("div");
-      layersBox.className = "tool-skin-layers";
-      const lh3 = document.createElement("h3");
-      lh3.textContent = "Skin layers";
-
-      const toggleWrap = document.createElement("div");
-      toggleWrap.className = "tool-model-toggle";
-      const toggleLabel = document.createElement("span");
-      toggleLabel.className = "tool-model-toggle-label";
-      toggleLabel.textContent = "Preview model";
-      const btns = document.createElement("div");
-      btns.className = "tool-model-toggle-btns";
-      const normBtn = document.createElement("button");
-      normBtn.type = "button";
-      normBtn.className = "tool-model-btn";
-      normBtn.textContent = "Normal";
-      const slimBtn = document.createElement("button");
-      slimBtn.type = "button";
-      slimBtn.className = "tool-model-btn";
-      slimBtn.textContent = "Slim";
-      btns.append(normBtn, slimBtn);
-      toggleWrap.append(toggleLabel, btns);
-
-      const ldl = document.createElement("dl");
-
-      const addLayerRow = (term, defText) => {
-        const dt = document.createElement("dt");
-        dt.textContent = term;
-        const dd = document.createElement("dd");
-        dd.textContent = defText;
-        ldl.append(dt, dd);
-        return dd;
-      };
-
-      addLayerRow(
-        "Arm model (Mojang profile)",
-        layerMeta?.model ?? "Unknown (textures not retrieved)",
-      );
-      addLayerRow("Cape", layerMeta?.capeLine ?? "Unknown");
-
-      layersBox.append(lh3, toggleWrap, ldl);
-
       const hintsSplit = document.createElement("div");
       hintsSplit.className = "tool-hints-split";
       hintsSplit.append(cmds);
@@ -609,18 +567,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return mode === "slim" ? slim : wide;
       }
 
-      let previewMode = layerMeta?.modelKey ?? "wide";
+      const previewMode = layerMeta?.modelKey ?? "wide";
       let previewFi = 0;
       let previewChain = buildPreviewFallbacks(previewMode);
-
-      function applyPreviewMode(mode) {
-        previewMode = mode === "slim" ? "slim" : "wide";
-        normBtn.classList.toggle("is-active", previewMode === "wide");
-        slimBtn.classList.toggle("is-active", previewMode === "slim");
-        previewFi = 0;
-        previewChain = buildPreviewFallbacks(previewMode);
-        img.src = previewChain[0];
-      }
 
       img.addEventListener("error", () => {
         previewFi += 1;
@@ -628,15 +577,9 @@ document.addEventListener("DOMContentLoaded", () => {
           img.src = previewChain[previewFi];
         }
       });
-
-      normBtn.addEventListener("click", () => applyPreviewMode("wide"));
-      slimBtn.addEventListener("click", () => applyPreviewMode("slim"));
-
-      applyPreviewMode(layerMeta?.modelKey ?? "wide");
+      img.src = previewChain[0];
 
       skinWrap.append(img);
-      // Put the layers box under the preview.
-      skinWrap.append(layersBox);
 
       grid.append(meta, skinWrap);
       resultsEl.append(grid);
