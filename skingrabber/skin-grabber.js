@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form || !input || !statusEl || !resultsEl || !submitBtn) return;
 
-  const mojangProfileBase =
-    "https://api.mojang.com/users/profiles/minecraft/";
+  const mojangProfileBase = "https://api.mojang.com/users/profiles/minecraft/";
   const USERNAME_RE = /^[a-z0-9_]{3,16}$/;
 
   function uuidWithDashes(id) {
@@ -248,7 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Example /give player head (older NBT style)",
         headCmd,
       );
-      addCopyField(cmds, "Avatar URL (plugins, sites, Discord bots)", avatarUrl);
+      addCopyField(
+        cmds,
+        "Avatar URL (plugins, sites, Discord bots)",
+        avatarUrl,
+      );
 
       const dlRow = document.createElement("div");
       dlRow.className = "tool-dl-row";
