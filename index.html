@@ -16,7 +16,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Press+Start+2P&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Outfit:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
         <link
@@ -33,62 +33,50 @@
         <canvas id="pixel-canvas"></canvas>
 
         <header class="header">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <img
-                        src="arsenic.png"
-                        alt="Arsenic.Dev Logo"
-                        class="logo-img"
-                    />
-                    <span class="logo-text"
-                        >Arsenic<span class="logo-dot">.</span
-                        ><span class="logo-accent">Dev</span></span
-                    >
-                </a>
-
-                <nav class="nav-menu">
-                    <ul class="nav-links">
-                        <li class="nav-item dropdown" id="tools-dropdown">
-                            <a href="#" class="nav-link dropdown-toggle">
-                                Tools
-                                <i
-                                    class="fas fa-chevron-down dropdown-arrow"
-                                ></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">GUI Texture Builder</a></li>
-                                <li><a href="#">Skin Grabber</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link"
-                                >Documentation
-                                <i
-                                    class="fas fa-book-open"
-                                    style="
-                                        font-size: 0.6rem;
-                                        margin-left: 0.3rem;
-                                    "
-                                ></i
-                            ></a>
-                        </li>
-                    </ul>
-                    <div class="nav-controls">
-                        <a
-                            href="https://discord.gg/BewvqAe3jb"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="btn btn-discord-icon"
-                            aria-label="Discord"
+            <div class="header-inner">
+                <div class="header-container">
+                    <a href="#" class="logo">
+                        <img
+                            src="arsenic.png"
+                            alt="Arsenic.Dev Logo"
+                            class="logo-img"
+                        />
+                        <span class="logo-text"
+                            >Arsenic<span class="logo-dot">.</span
+                            ><span class="logo-accent">Dev</span></span
                         >
-                            <i class="fab fa-discord"></i>
-                        </a>
-                    </div>
-                </nav>
+                    </a>
+
+                    <nav class="nav-menu" aria-label="Main">
+                        <ul class="nav-links">
+                            <li class="nav-item dropdown" id="tools-dropdown">
+                                <a href="#" class="nav-link dropdown-toggle">
+                                    Tools
+                                    <i
+                                        class="fas fa-chevron-down dropdown-arrow"
+                                    ></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">GUI Texture Builder</a></li>
+                                    <li><a href="#">Skin Grabber</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="nav-link"
+                                    >Documentation
+                                    <i
+                                        class="fas fa-book-open nav-link-icon"
+                                        aria-hidden="true"
+                                    ></i
+                                ></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
 
-        <main>
+        <main id="main">
             <section id="hero" class="hero section">
                 <div class="bg-gradient-orb"></div>
 
@@ -112,15 +100,16 @@
                     </a>
                 </div>
 
-                <div class="scroll-hint">Scroll to begin your journey</div>
-                <div
-                    class="scroll-indicator"
-                    aria-label="Scroll hint"
-                    data-target="#offer"
-                >
-                    <span class="mouse">
-                        <span class="wheel"></span>
-                    </span>
+                <div class="scroll-cta" aria-hidden="false">
+                    <div class="scroll-hint">Scroll to begin your journey</div>
+                    <button
+                        type="button"
+                        class="scroll-indicator"
+                        aria-label="Scroll to next section"
+                        data-target="#offer"
+                    >
+                        <i class="fas fa-chevron-down scroll-indicator-arrow"></i>
+                    </button>
                 </div>
             </section>
 
@@ -134,8 +123,13 @@
 
                     <div class="offer-grid">
                         <div class="offer-card animate-on-scroll zoom-in">
-                            <div class="offer-icon" aria-hidden="true">
-                                <i class="fas fa-microchip red-emoji-icon"></i>
+                            <div
+                                class="offer-icon-wrap"
+                                aria-hidden="true"
+                            >
+                                <div class="offer-icon">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
                             </div>
                             <h3>Plugin Development</h3>
                             <p>
@@ -147,18 +141,41 @@
 
                         <div
                             class="offer-card animate-on-scroll zoom-in"
-                            style="--delay: 0.2s"
+                            style="--delay: 0.15s"
                         >
-                            <div class="offer-icon" aria-hidden="true">
-                                <i
-                                    class="fas fa-layer-group red-emoji-icon"
-                                ></i>
+                            <div
+                                class="offer-icon-wrap"
+                                aria-hidden="true"
+                            >
+                                <div class="offer-icon">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
                             </div>
                             <h3>Premium Setups</h3>
                             <p>
                                 Ready-to-use server configurations built for
                                 competitive play. Optimized, clean, and powered
                                 by our high-quality plugins.
+                            </p>
+                        </div>
+
+                        <div
+                            class="offer-card animate-on-scroll zoom-in"
+                            style="--delay: 0.3s"
+                        >
+                            <div
+                                class="offer-icon-wrap"
+                                aria-hidden="true"
+                            >
+                                <div class="offer-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                            </div>
+                            <h3>Built for Competition</h3>
+                            <p>
+                                Tuned for latency, stability, and clarity under
+                                pressure — so your players stay focused on the
+                                game, not the stack.
                             </p>
                         </div>
                     </div>
@@ -231,35 +248,31 @@
                         <li><a href="#">Tools</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-social">
-                    <h4>Follow Us</h4>
-                    <div class="social-icons">
-                        <a
-                            href="https://github.com/Arsenic-Development"
-                            aria-label="GitHub"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="footer-social-icon"
-                            ><i class="fab fa-github"></i
-                        ></a>
+            </div>
+            <div class="footer-bottom">
+                <div class="container footer-bottom-container">
+                    <p class="footer-bottom-copy">
+                        &copy; <span id="current-year"></span> Arsenic
+                        Development. All rights reserved.
+                    </p>
+                    <div class="footer-bottom-links">
                         <a
                             href="https://discord.gg/BewvqAe3jb"
                             aria-label="Discord"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="footer-social-icon"
+                            class="footer-bottom-icon"
                             ><i class="fab fa-discord"></i
                         ></a>
+                        <a
+                            href="https://github.com/Arsenic-Development"
+                            aria-label="GitHub"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="footer-bottom-icon"
+                            ><i class="fab fa-github"></i
+                        ></a>
                     </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container footer-bottom-container">
-                    <p>
-                        &copy; <span id="current-year"></span> Arsenic
-                        Development. All rights reserved.
-                    </p>
                 </div>
             </div>
         </footer>

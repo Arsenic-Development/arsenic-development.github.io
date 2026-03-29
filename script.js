@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
       draw() {
-        ctx.fillStyle = `rgba(230, 57, 70, ${this.alpha * 0.75})`;
+        ctx.fillStyle = `rgba(255, 0, 0, ${this.alpha * 0.75})`;
         ctx.fillRect(this.x, this.y, this.size, this.size);
       }
     }
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       draw() {
         if (!this.active) return;
         ctx.shadowBlur = 15;
-        ctx.shadowColor = `rgba(230, 57, 70, ${this.opacity * 0.5})`;
+        ctx.shadowColor = `rgba(255, 0, 0, ${this.opacity * 0.5})`;
         ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
         ctx.lineWidth = 2.5;
         ctx.lineCap = "round";
