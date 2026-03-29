@@ -24,8 +24,11 @@
         rgba(0, 0, 0, 0) 65%
     );
 
-    --font-heading: "Plus Jakarta Sans", system-ui, sans-serif;
-    --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-sans: "Lexend", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+    --font-mono:
+        ui-monospace, SFMono-Regular, "Cascadia Code", "Source Code Pro", Menlo,
+        Consolas, monospace;
+    --font-serif: ui-serif, Georgia, "Times New Roman", serif;
 
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -67,7 +70,7 @@
     }
 
     body {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         background-color: var(--color-bg);
         color: var(--color-text);
         line-height: 1.65;
@@ -94,7 +97,7 @@
     h4,
     h5,
     h6 {
-        font-family: var(--font-heading);
+        font-family: var(--font-sans);
         line-height: 1.15;
         font-weight: 800;
         letter-spacing: -0.02em;
@@ -112,6 +115,13 @@
 
     ul {
         list-style: none;
+    }
+
+    code,
+    kbd,
+    samp,
+    pre {
+        font-family: var(--font-mono);
     }
 
     img {
@@ -140,7 +150,7 @@
         padding: 1rem;
         z-index: 2000;
         transition: top 0.3s ease;
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         font-size: 0.9rem;
         font-weight: 700;
     }
@@ -229,7 +239,7 @@
         display: flex;
         align-items: center;
         gap: 0.65rem;
-        font-family: var(--font-heading);
+        font-family: var(--font-sans);
         font-size: clamp(1.15rem, 2.4vw, 1.4rem);
         font-weight: 800;
         letter-spacing: -0.03em;
@@ -267,7 +277,7 @@
     }
 
     .nav-link {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         font-size: 0.9rem;
         font-weight: 700;
         color: var(--color-text-muted);
@@ -330,7 +340,7 @@
     .dropdown-menu a {
         display: block;
         padding: 0.55rem 1.25rem;
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         font-size: 0.88rem;
         font-weight: 600;
         color: var(--color-text-muted);
@@ -347,7 +357,7 @@
         justify-content: center;
         gap: 0.5rem;
         border-radius: var(--radius-sm);
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         transition: all var(--transition-normal);
     }
 
@@ -387,7 +397,7 @@
         color: white;
         padding: 1.05rem 2.5rem;
         font-size: 0.95rem;
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         font-weight: 800;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -398,7 +408,7 @@
     }
 
     .hero-content h1 {
-        font-family: var(--font-heading);
+        font-family: var(--font-sans);
         font-size: clamp(2.5rem, 6vw, 4.25rem);
         font-weight: 800;
         letter-spacing: -0.03em;
@@ -406,7 +416,7 @@
     }
 
     .hero-subtitle {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         color: var(--color-text-muted);
         max-width: 38rem;
         margin-inline: auto;
@@ -428,7 +438,7 @@
     }
 
     .scroll-hint {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.18em;
@@ -525,7 +535,7 @@
     }
 
     .offer-card h3 {
-        font-family: var(--font-heading);
+        font-family: var(--font-sans);
         font-size: clamp(1.25rem, 2.4vw, 1.5rem);
         font-weight: 800;
         color: var(--color-text);
@@ -534,7 +544,7 @@
     }
 
     .offer-card p {
-        font-family: var(--font-body);
+        font-family: var(--font-sans);
         color: var(--color-text-muted);
         font-size: 0.94rem;
         line-height: 1.62;
@@ -571,6 +581,7 @@
     }
 
     .stat-number .counter {
+        font-family: var(--font-mono);
         background: var(--gradient-primary);
         -webkit-background-clip: text;
         background-clip: text;
@@ -675,7 +686,7 @@
 }
 
 .footer-logo-text {
-    font-family: var(--font-heading);
+    font-family: var(--font-sans);
     font-size: 1.2rem;
     font-weight: 800;
 }
@@ -689,7 +700,7 @@
     color: var(--color-text-muted);
     font-size: 0.9rem;
     max-width: 300px;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     line-height: 1.6;
 }
 
@@ -697,7 +708,7 @@
     margin-bottom: 1rem;
     font-size: 0.75rem;
     text-transform: uppercase;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     font-weight: 800;
     letter-spacing: 0.1em;
     color: var(--color-text);
@@ -710,7 +721,7 @@
 .footer-links a {
     color: var(--color-text-muted);
     font-size: 0.9rem;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     font-weight: 600;
     transition: color var(--transition-fast);
 }
@@ -725,7 +736,7 @@
     border-top: none;
     color: var(--color-text-muted);
     font-size: 0.875rem;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     font-weight: 600;
     position: relative;
 }
@@ -796,7 +807,7 @@
 .stat-label {
     color: var(--color-text-muted);
     font-size: 0.75rem;
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.14em;
