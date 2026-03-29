@@ -30,7 +30,6 @@
 
     <body>
         <a href="#main" class="skip-link">Skip to main content</a>
-        <canvas id="pixel-canvas"></canvas>
 
         <header class="header">
             <div class="header-inner">
@@ -79,7 +78,7 @@
 
         <main id="main">
             <section id="hero" class="hero section">
-                <div class="bg-gradient-orb"></div>
+                <div class="hero-backdrop" aria-hidden="true"></div>
 
                 <div class="container hero-content animate-on-scroll slide-up">
                     <h1>
@@ -230,12 +229,89 @@
                     </p>
                 </div>
 
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
+                <nav class="footer-col footer-nav-block" aria-label="Footer">
+                    <h4 class="footer-col-title">Navigation</h4>
+                    <ul>
+                        <li><a href="#main">Home</a></li>
+                        <li><a href="#">Tools</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </nav>
+
+                <div class="footer-col footer-quick-block">
+                    <h4 class="footer-col-title">Quick Links</h4>
+                    <ul class="footer-market-icons">
+                        <li>
+                            <a
+                                href="https://modrinth.com"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Modrinth"
+                                ><img
+                                    src="https://cdn.simpleicons.org/modrinth/ffffff"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                    loading="lazy"
+                                    class="footer-market-img"
+                            /></a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.spigotmc.org"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="SpigotMC"
+                                ><img
+                                    src="https://cdn.simpleicons.org/spigotmc/ffffff"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                    loading="lazy"
+                                    class="footer-market-img"
+                            /></a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://builtbybit.com"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="BuiltByBit"
+                                ><img
+                                    src="https://cdn.simpleicons.org/builtbybit/528bff"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                    loading="lazy"
+                                    class="footer-market-img"
+                            /></a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://polymart.org"
+                                class="footer-market-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Polymart"
+                                ><img
+                                    src="https://cdn.simpleicons.org/polymart/ffffff"
+                                    alt=""
+                                    width="22"
+                                    height="22"
+                                    loading="lazy"
+                                    class="footer-market-img"
+                            /></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col footer-legal-block">
+                    <h4 class="footer-col-title">Legal</h4>
                     <ul>
                         <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tools</a></li>
                     </ul>
                 </div>
             </div>
