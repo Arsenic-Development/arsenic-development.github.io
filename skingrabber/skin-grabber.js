@@ -575,28 +575,12 @@ document.addEventListener("DOMContentLoaded", () => {
         layerMeta?.model ?? "Unknown (textures not retrieved)",
       );
       addLayerRow("Cape", layerMeta?.capeLine ?? "Unknown");
-      const layoutDd = addLayerRow(
-        "Texture file",
-        layerMeta ? "Reading dimensions…" : "—",
-      );
-
-      const ovDt = document.createElement("dt");
-      ovDt.textContent = "Outer layer regions";
-      const ovDd = document.createElement("dd");
-      const ovUl = document.createElement("ul");
-      (layerMeta?.overlayRegions ?? DEFAULT_OVERLAY_REGIONS).forEach((line) => {
-        const li = document.createElement("li");
-        li.textContent = line;
-        ovUl.append(li);
-      });
-      ovDd.append(ovUl);
-      ldl.append(ovDt, ovDd);
 
       layersBox.append(lh3, toggleWrap, ldl);
 
       const hintsSplit = document.createElement("div");
       hintsSplit.className = "tool-hints-split";
-      hintsSplit.append(cmds, layersBox);
+      hintsSplit.append(cmds);
 
       meta.append(dlRow, hintsSplit);
 
@@ -651,15 +635,8 @@ document.addEventListener("DOMContentLoaded", () => {
       applyPreviewMode(layerMeta?.modelKey ?? "wide");
 
       skinWrap.append(img);
-
-      const probeUrl = layerMeta?.skinTextureUrl || skinUrl;
-      probeSkinTextureMeta(probeUrl).then((hint) => {
-        layoutDd.textContent =
-          hint ||
-          (layerMeta
-            ? "Loaded from profile (size not readable in browser)"
-            : "—");
-      });
+      // Put the layers box under the preview.
+      skinWrap.append(layersBox);
 
       grid.append(meta, skinWrap);
       resultsEl.append(grid);

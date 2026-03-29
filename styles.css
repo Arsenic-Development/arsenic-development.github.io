@@ -1122,6 +1122,7 @@
 
     .tool-hints-split {
         display: grid;
+    grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 1rem;
         padding-top: 1.1rem;
@@ -1129,11 +1130,11 @@
     }
 
     @media (min-width: 720px) {
-        .tool-hints-split {
-            grid-template-columns: minmax(0, 1fr) minmax(11.5rem, 15rem);
-            align-items: start;
-            gap: 1.25rem;
-        }
+    .tool-hints-split:has(.tool-skin-layers) {
+        grid-template-columns: minmax(0, 1fr) minmax(11.5rem, 15rem);
+        align-items: start;
+        gap: 1.25rem;
+    }
     }
 
     .tool-hints-split .tool-commands {
@@ -1158,38 +1159,47 @@
 
     .tool-model-toggle-btns {
         display: inline-flex;
-        border-radius: 8px;
-        border: 1px solid var(--color-border);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
         overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
     }
 
     .tool-model-btn {
         margin: 0;
-        padding: 0.38rem 0.85rem;
+    padding: 0.48rem 0.95rem;
         font-family: var(--font-sans);
-        font-size: 0.75rem;
+    font-size: 0.78rem;
         font-weight: 700;
         border: none;
         background: transparent;
         color: var(--color-text-muted);
         cursor: pointer;
         transition:
-            background var(--transition-fast),
-            color var(--transition-fast);
+        background var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast);
     }
 
     .tool-model-btn + .tool-model-btn {
-        border-left: 1px solid var(--color-border);
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
     }
 
     .tool-model-btn.is-active {
-        background: rgba(255, 0, 0, 0.12);
-        color: var(--color-primary);
+    background: rgba(255, 0, 0, 0.22);
+    color: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.10);
     }
 
     .tool-model-btn:hover:not(.is-active) {
-        color: var(--color-text);
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.06);
     }
+
+.tool-model-btn:focus-visible {
+    outline: 2px solid rgba(255, 0, 0, 0.55);
+    outline-offset: -2px;
+}
 
     .tool-skin-wrap {
         display: flex;
@@ -1197,23 +1207,24 @@
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        max-width: 11.5rem;
+    max-width: 8.25rem;
         padding: 0.35rem 0 0;
     }
 
     .tool-skin-img {
-        width: 120px;
-        height: auto;
-        max-height: 220px;
-        object-fit: contain;
+    width: 120px;
+    height: 120px;
+    max-height: none;
+    object-fit: cover;
         image-rendering: pixelated;
-        border-radius: 8px;
+    border-radius: 50%;
         border: 1px solid var(--color-border);
         background: var(--color-bg-icon);
     }
 
     .tool-skin-layers {
         width: 100%;
+    margin-top: 0.85rem;
         padding: 0.65rem 0.7rem 0.75rem;
         border-radius: 10px;
         border: 1px solid var(--color-border);
@@ -1544,12 +1555,21 @@
 
 @media (min-width: 900px) {
     .footer-container {
-        grid-template-columns: minmax(0, 12.5rem) 1px repeat(3, minmax(0, 9.5rem));
-        grid-template-areas: "brand divider nav quick legal";
+        grid-template-columns: minmax(0, 14rem) 1px 1fr;
+        grid-template-areas: "brand divider right";
         column-gap: 0.65rem;
         align-items: start;
         justify-items: center;
         text-align: inherit;
+    }
+
+    .footer-right {
+        grid-area: right;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.65rem;
+        width: 100%;
     }
 
     .footer-divider {
@@ -1575,26 +1595,10 @@
         border-right: none;
     }
 
-    .footer-nav-block {
-        grid-area: nav;
-        justify-self: center;
-        width: 100%;
-        max-width: 10.5rem;
-        text-align: center;
-    }
-
-    .footer-quick-block {
-        grid-area: quick;
-        justify-self: center;
-        width: 100%;
-        max-width: 10.5rem;
-        text-align: center;
-    }
-
+    .footer-nav-block,
+    .footer-quick-block,
     .footer-legal-block {
-        grid-area: legal;
-        justify-self: center;
-        width: 100%;
+        width: auto;
         max-width: 10.5rem;
         text-align: center;
     }
