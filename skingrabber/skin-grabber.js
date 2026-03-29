@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form || !input || !statusEl || !resultsEl || !submitBtn) return;
 
+  resultsEl.addEventListener(
+    "selectstart",
+    (e) => {
+      if (e.target.closest?.(".tool-copy-row code")) {
+        e.preventDefault();
+      }
+    },
+    true,
+  );
+
   const mojangProfileBase = "https://api.mojang.com/users/profiles/minecraft/";
   const USERNAME_RE = /^[a-z0-9_]{3,16}$/;
 
@@ -53,6 +63,123 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch {
       return null;
     }
+  }
+
+  const DEFAULT_OVERLAY_REGIONS = [
+    "Head overlay (hat / helmet)",
+    "Torso / jacket overlay",
+    "Right sleeve overlay",
+    "Left sleeve overlay",
+    "Right pant leg overlay",
+    "Left pant leg overlay",
+  ];
+
+  function parseSkinLayersFromPlayer(player) {
+    if (!player?.properties) {
+      return null;
+    }
+    const prop = player.properties.find((p) => p.name === "textures");
+    if (!prop?.value) {
+      return null;
+    }
+    let decoded;
+    try {
+      decoded = JSON.parse(atob(prop.value));
+    } catch {
+      return null;
+    }
+    const skin = decoded.textures?.SKIN;
+    const cape = decoded.textures?.CAPE;
+    const model =
+      skin?.metadata?.model === "slim"
+        ? "Slim (Alex-style arms)"
+        : "Wide (Steve-style arms)";
+    const capeLine = cape?.url
+      ? "Linked on this Mojang profile"
+      : "None on this profile";
+    return {
+      model,
+      capeLine,
+      overlayRegions: DEFAULT_OVERLAY_REGIONS,
+      skinTextureUrl: player.skin_texture || skin?.url || null,
+    };
+  }
+
+  async function fetchPlayerdbPlayer(username) {
+    try {
+      const res = await fetch(
+        `https://playerdb.co/api/player/minecraft/${encodeURIComponent(username)}`,
+      );
+      const data = parseJsonSafe(await res.text());
+      if (!data?.success || !data.data?.player) {
+        return null;
+      }
+      return data.data.player;
+    } catch {
+      return null;
+    }
+  }
+
+  function layoutHintFromDimensions(w, h) {
+    if (!w || !h) {
+      return null;
+    }
+    if (w === 64 && h === 64) {
+      return "64×64 — full geometry + second-layer map";
+    }
+    if (w === 64 && h === 32) {
+      return "64×32 — classic file (no outer layer map)";
+    }
+    if (w === 128 && h === 128) {
+      return "128×128 — high-res template";
+    }
+    return `${w}×${h}`;
+  }
+
+  function probeSkinTextureMeta(url) {
+    if (!url) {
+      return Promise.resolve(null);
+    }
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = () =>
+        resolve(layoutHintFromDimensions(img.naturalWidth, img.naturalHeight));
+      img.onerror = () => resolve(null);
+      img.src = url;
+    });
+  }
+
+  async function downloadSkinPng(urlCandidates, filename) {
+    const tried = [...urlCandidates];
+    for (const url of tried) {
+      if (!url) {
+        continue;
+      }
+      try {
+        const res = await fetch(url, { mode: "cors", cache: "no-store" });
+        if (!res.ok) {
+          continue;
+        }
+        const blob = await res.blob();
+        if (!blob || blob.size < 32) {
+          continue;
+        }
+        const objUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = objUrl;
+        a.download = filename;
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(objUrl);
+        return true;
+      } catch {
+        /* try next URL */
+      }
+    }
+    return false;
   }
 
   async function fetchMojangProfile(username) {
@@ -295,6 +422,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const renderUrl = `https://mc-heads.net/body/${dashed}/128`;
       const avatarUrl = `https://mc-heads.net/avatar/${dashed}/128`;
 
+      const playerdbPlayer = await fetchPlayerdbPlayer(raw);
+      const layerMeta = playerdbPlayer
+        ? parseSkinLayersFromPlayer(playerdbPlayer)
+        : null;
+
       const history = await fetchNameHistory(id);
       const headCmd = `/give @p minecraft:player_head{SkullOwner:"${name}"} 1`;
 
@@ -361,13 +493,32 @@ document.addEventListener("DOMContentLoaded", () => {
       const dlRow = document.createElement("div");
       dlRow.className = "tool-dl-row";
 
-      const aSkin = document.createElement("a");
-      aSkin.href = skinUrl;
-      aSkin.className = "tool-dl";
-      aSkin.target = "_blank";
-      aSkin.rel = "noopener noreferrer";
-      aSkin.innerHTML =
+      const downloadUrls = [
+        skinUrl,
+        `https://api.mineatar.io/skin/${dashed}`,
+        layerMeta?.skinTextureUrl,
+        `https://minotar.net/skin/${encodeURIComponent(name)}`,
+      ].filter(Boolean);
+
+      const btnDownload = document.createElement("button");
+      btnDownload.type = "button";
+      btnDownload.className = "tool-dl tool-dl--download";
+      btnDownload.innerHTML =
         '<i class="bi bi-download" aria-hidden="true"></i> Download skin PNG';
+      btnDownload.addEventListener("click", async () => {
+        btnDownload.disabled = true;
+        const ok = await downloadSkinPng(
+          downloadUrls,
+          `${name.replace(/[^\w-]/g, "_")}-skin.png`,
+        );
+        btnDownload.disabled = false;
+        if (!ok) {
+          setStatus(
+            "Could not download the PNG automatically (browser blocked the file). Open the avatar link or copy the URL instead.",
+            true,
+          );
+        }
+      });
 
       const aAvatar = document.createElement("a");
       aAvatar.href = avatarUrl;
@@ -377,7 +528,7 @@ document.addEventListener("DOMContentLoaded", () => {
       aAvatar.innerHTML =
         '<i class="bi bi-link-45deg" aria-hidden="true"></i> Open avatar';
 
-      dlRow.append(aSkin, aAvatar);
+      dlRow.append(btnDownload, aAvatar);
       meta.append(dlRow, cmds);
 
       const skinWrap = document.createElement("div");
@@ -400,7 +551,55 @@ document.addEventListener("DOMContentLoaded", () => {
           previewFi += 1;
         }
       });
-      skinWrap.append(img);
+
+      const layersBox = document.createElement("div");
+      layersBox.className = "tool-skin-layers";
+      const lh3 = document.createElement("h3");
+      lh3.textContent = "Skin layers";
+      const ldl = document.createElement("dl");
+
+      const addLayerRow = (term, defText) => {
+        const dt = document.createElement("dt");
+        dt.textContent = term;
+        const dd = document.createElement("dd");
+        dd.textContent = defText;
+        ldl.append(dt, dd);
+        return dd;
+      };
+
+      addLayerRow(
+        "Arm model",
+        layerMeta?.model ?? "Unknown (Mojang textures not retrieved)",
+      );
+      addLayerRow("Cape", layerMeta?.capeLine ?? "Unknown");
+      const layoutDd = addLayerRow(
+        "Texture file",
+        layerMeta ? "Reading dimensions…" : "—",
+      );
+
+      const ovDt = document.createElement("dt");
+      ovDt.textContent = "Outer layer regions";
+      const ovDd = document.createElement("dd");
+      const ovUl = document.createElement("ul");
+      (layerMeta?.overlayRegions ?? DEFAULT_OVERLAY_REGIONS).forEach((line) => {
+        const li = document.createElement("li");
+        li.textContent = line;
+        ovUl.append(li);
+      });
+      ovDd.append(ovUl);
+      ldl.append(ovDt, ovDd);
+
+      layersBox.append(lh3, ldl);
+      skinWrap.append(img, layersBox);
+
+      const probeUrl = layerMeta?.skinTextureUrl || skinUrl;
+      probeSkinTextureMeta(probeUrl).then((hint) => {
+        layoutDd.textContent =
+          hint ||
+          (layerMeta
+            ? "Loaded from profile (size not readable in browser)"
+            : "—");
+      });
 
       grid.append(meta, skinWrap);
       resultsEl.append(grid);

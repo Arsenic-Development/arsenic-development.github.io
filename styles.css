@@ -787,7 +787,7 @@
     }
 
     .btn-hero:hover .btn-hero-icon {
-        border-color: rgba(255, 0, 0, 0.25);
+        border-color: var(--color-border);
         color: #7289da;
     }
 
@@ -1062,17 +1062,84 @@
 
     .tool-skin-wrap {
         display: flex;
-        justify-content: center;
-        padding: 0.5rem 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.85rem;
+        width: 100%;
+        max-width: 11.5rem;
+        padding: 0.35rem 0 0;
     }
 
     .tool-skin-img {
         width: 120px;
         height: auto;
+        max-height: 220px;
+        object-fit: contain;
         image-rendering: pixelated;
         border-radius: 8px;
         border: 1px solid var(--color-border);
         background: var(--color-bg-icon);
+    }
+
+    .tool-skin-layers {
+        width: 100%;
+        padding: 0.65rem 0.7rem 0.75rem;
+        border-radius: 10px;
+        border: 1px solid var(--color-border);
+        background: var(--color-bg-icon);
+        font-family: var(--font-sans);
+    }
+
+    .tool-skin-layers h3 {
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin: 0 0 0.5rem;
+    }
+
+    .tool-skin-layers dl {
+        margin: 0;
+        display: grid;
+        gap: 0.35rem 0.5rem;
+    }
+
+    .tool-skin-layers dt {
+        font-size: 0.68rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-text-muted);
+    }
+
+    .tool-skin-layers dd {
+        margin: 0;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--color-text);
+        line-height: 1.45;
+    }
+
+    .tool-skin-layers ul {
+        margin: 0.2rem 0 0;
+        padding-left: 1rem;
+        font-size: 0.74rem;
+        font-weight: 600;
+        color: var(--color-text-muted);
+        line-height: 1.45;
+    }
+
+    .tool-panel .tool-copy-row code,
+    .tool-panel .tool-code-block {
+        user-select: none;
+        -webkit-user-select: none;
+        cursor: default;
+    }
+
+    button.tool-dl {
+        font: inherit;
+        cursor: pointer;
     }
 
     .tool-meta-block h2 {
@@ -1109,6 +1176,11 @@
     .tool-dl:hover {
         border-color: rgba(255, 0, 0, 0.3);
         color: var(--color-primary);
+    }
+
+    .tool-dl:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
     }
 
     .tool-field {
@@ -1313,6 +1385,10 @@
     opacity: 0.35;
 }
 
+.footer .container.footer-container {
+    max-width: min(var(--layout-max), 58rem);
+}
+
 .footer-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -1337,11 +1413,11 @@
 
 @media (min-width: 900px) {
     .footer-container {
-        grid-template-columns: minmax(0, 1.35fr) 1px repeat(3, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 12.5rem) 1px repeat(3, minmax(0, 9.5rem));
         grid-template-areas: "brand divider nav quick legal";
-        column-gap: 1.25rem;
+        column-gap: 0.65rem;
         align-items: start;
-        justify-items: stretch;
+        justify-items: center;
         text-align: inherit;
     }
 
@@ -1362,7 +1438,7 @@
         grid-area: brand;
         justify-self: start;
         text-align: left;
-        max-width: none;
+        max-width: 14rem;
         padding-right: 0;
         margin-right: 0;
         border-right: none;
@@ -1372,7 +1448,7 @@
         grid-area: nav;
         justify-self: center;
         width: 100%;
-        max-width: 13rem;
+        max-width: 10.5rem;
         text-align: center;
     }
 
@@ -1380,7 +1456,7 @@
         grid-area: quick;
         justify-self: center;
         width: 100%;
-        max-width: 13rem;
+        max-width: 10.5rem;
         text-align: center;
     }
 
@@ -1388,7 +1464,7 @@
         grid-area: legal;
         justify-self: center;
         width: 100%;
-        max-width: 13rem;
+        max-width: 10.5rem;
         text-align: center;
     }
 }
