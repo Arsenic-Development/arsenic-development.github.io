@@ -1,9 +1,3 @@
-/**
- * Icomoon: coloca aquí los archivos de tu export (icomoon.io → Download → Fonts).
- * Sustituye las rutas si tu ZIP usa otros nombres (p. ej. icomoon.ttf solo).
- * Opcional: pega el resto del contenido de style.css que genera Icomoon
- * (reglas [class^="icon-"] y .icon-nombre:before { content: "..." }).
- */
 @font-face {
     font-family: "icomoon";
     src:
@@ -27,8 +21,3 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-/* Ejemplo (reemplaza por los códigos reales de tu export):
-.icon-plugin:before { content: "\e900"; }
-.icon-setup:before { content: "\e901"; }
-*/
