@@ -88,6 +88,20 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(el);
   });
 
+  const revealIfNearViewport = () => {
+    document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+      if (el.classList.contains("is-visible")) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 1.25 && rect.bottom > -50) {
+        el.classList.add("is-visible");
+      }
+    });
+  };
+
+  revealIfNearViewport();
+  window.addEventListener("scroll", revealIfNearViewport, { passive: true });
+  window.addEventListener("resize", revealIfNearViewport, { passive: true });
+
   function animateCounter(el) {
     const target = parseInt(el.getAttribute("data-target"), 10) || 0;
     if (target === 0) return;
@@ -117,6 +131,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("current-year");
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
+  }
+
+  const isSkinGrabberPage =
+    document.body?.classList?.contains("page-skingrabber") ?? false;
+
+  if (isSkinGrabberPage) {
+    const stop = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    };
+
+    document.addEventListener("copy", stop, { capture: true });
+    document.addEventListener("cut", stop, { capture: true });
+    document.addEventListener("paste", stop, { capture: true });
+    document.addEventListener("dragstart", stop, { capture: true });
+    document.addEventListener("selectstart", stop, { capture: true });
   }
 
   const discordInviteCode = "BewvqAe3jb";

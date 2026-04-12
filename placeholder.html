@@ -3,26 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Look up any Minecraft Java player: UUID, skin download, avatar URL, and quick copy fields for server owners and plugin configs."
-        />
-        <meta name="robots" content="index, follow" />
-        <meta property="og:type" content="website" />
-        <meta
-            property="og:title"
-            content="Arsenic Development | Skin Grabber"
-        />
-        <meta
-            property="og:description"
-            content="Resolve Minecraft usernames to UUIDs, preview skins, and copy URLs for your server stack."
-        />
-        <meta name="twitter:card" content="summary" />
-        <title>Arsenic Development | Skin Grabber</title>
-
-        <link rel="preload" href="../assets/arsenic.png" as="image" />
-        <link rel="icon" type="image/png" href="../assets/arsenic.png" />
-
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="theme-color" content="#000000" />
+        <title>Arsenic Development | Not Ready</title>
+        <link rel="icon" type="image/png" href="assets/arsenic.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -34,16 +18,16 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../styles.css" />
+        <link rel="stylesheet" href="styles.css" />
     </head>
 
-    <body class="page-skingrabber">
+    <body class="page-placeholder">
         <header class="header">
             <div class="header-inner">
                 <div class="header-container">
-                    <div class="logo" aria-label="Arsenic">
+                    <div class="logo" role="group" aria-label="Arsenic">
                         <img
-                            src="../assets/arsenic.png"
+                            src="assets/arsenic.png"
                             alt=""
                             class="logo-img"
                             width="26"
@@ -69,25 +53,32 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="none">
-                                        <a href="./" role="menuitem"
-                                            ><i
+                                        <a href="gradientbuilder/" role="menuitem">
+                                            <i
+                                                class="bi bi-palette-fill dropdown-item-icon"
+                                                aria-hidden="true"
+                                            ></i>
+                                            Gradient Builder
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a href="skingrabber/" role="menuitem">
+                                            <i
                                                 class="bi bi-person-square dropdown-item-icon"
                                                 aria-hidden="true"
                                             ></i>
-                                            Skin Grabber</a
-                                        >
+                                            Skin Grabber
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="../placeholder.html" class="nav-link nav-link--doc">
+                                <a href="placeholder.html" class="nav-link nav-link--doc">
                                     <i
                                         class="bi bi-book nav-link-icon"
                                         aria-hidden="true"
                                     ></i>
-                                    <span class="nav-link-label"
-                                        >Documentation</span
-                                    >
+                                    <span class="nav-link-label">Documentation</span>
                                 </a>
                             </li>
                         </ul>
@@ -97,86 +88,42 @@
         </header>
 
         <main id="main">
-            <section
-                class="tool-page section"
-                aria-labelledby="skin-grabber-title"
-            >
+            <section class="section tool-page">
                 <div class="container">
                     <div class="tool-page-header">
                         <div
                             class="section-eyebrow section-eyebrow--center animate-on-scroll slide-up"
                         >
-                            <span class="section-badge section-badge--red"
-                                >Tools</span
-                            >
+                            <span class="section-badge section-badge--red">Not Ready</span>
                             <p class="section-lede">
-                                Mojang profile lookup for operators and
-                                developers.
+                                This page is still in development.
                             </p>
                         </div>
-                        <h1 id="skin-grabber-title">
-                            Skin <span class="text-gradient">Grabber</span>
+                        <h1>
+                            Page <span class="text-gradient">Unavailable</span>
                         </h1>
                         <p class="tool-page-lede">
-                            Enter a Minecraft Java Edition username to get the
-                            official UUID, a skin you can download, render
-                            previews, and copy‑paste snippets for heads, web
-                            apps, and plugin configuration.
+                            You followed a link to a page that hasn’t been built yet (or is
+                            temporarily disabled).
                         </p>
-                    </div>
 
-                    <div class="tool-panel animate-on-scroll slide-up">
-                        <form
-                            class="tool-form"
-                            id="skin-form"
-                            method="get"
-                            action="#"
-                            novalidate
-                            autocomplete="off"
-                            data-bwignore
-                            data-lpignore="true"
-                            data-1p-ignore
-                        >
-                            <label class="visually-hidden" for="skin-username"
-                                >Minecraft username</label
-                            >
-                            <input
-                                class="tool-input"
-                                id="skin-username"
-                                name="mc-player-lookup"
-                                type="search"
-                                placeholder="Minecraft username"
-                                spellcheck="false"
-                                maxlength="16"
-                                autocomplete="off"
-                                autocorrect="off"
-                                autocapitalize="none"
-                                data-bwignore
-                                data-lpignore="true"
-                                data-1p-ignore
-                            />
-                            <button type="submit" class="tool-submit">
-                                Look up
-                            </button>
-                        </form>
-                        <div
-                            class="tool-validation"
-                            id="skin-validation"
-                            role="alert"
-                            aria-live="assertive"
-                            hidden
-                        ></div>
-                        <p
-                            class="tool-status"
-                            id="skin-status"
-                            role="status"
-                            aria-live="polite"
-                        ></p>
-                        <div
-                            class="tool-results"
-                            id="skin-results"
-                            aria-live="polite"
-                        ></div>
+                        <div class="tool-panel animate-on-scroll slide-up">
+                            <p style="margin: 0; color: var(--color-text-muted);">
+                                Use the header navigation to go back, or return to the
+                                homepage.
+                            </p>
+                            <div style="margin-top: 1rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+                                <a href="index.html" class="btn btn-hero">Go Home</a>
+                                <a
+                                    href="https://discord.gg/BewvqAe3jb"
+                                    class="btn btn-hero"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Join Discord
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -188,7 +135,7 @@
                 <div class="footer-brand">
                     <div class="footer-logo">
                         <img
-                            src="../assets/arsenic.png"
+                            src="assets/arsenic.png"
                             alt=""
                             class="footer-logo-img"
                             loading="lazy"
@@ -205,16 +152,13 @@
 
                 <div class="footer-divider" aria-hidden="true"></div>
                 <div class="footer-right">
-                    <nav
-                        class="footer-col footer-nav-block"
-                        aria-label="Footer"
-                    >
+                    <nav class="footer-col footer-nav-block" aria-label="Footer">
                         <h4 class="footer-col-title">Navigation</h4>
                         <ul>
-                            <li><a href="../index.html#hero">Intro</a></li>
-                            <li><a href="../index.html#offer">Services</a></li>
-                            <li><a href="../index.html#faq">FAQ</a></li>
-                            <li><a href="../index.html#team">Team</a></li>
+                            <li><a href="index.html#hero">Intro</a></li>
+                            <li><a href="index.html#offer">Services</a></li>
+                            <li><a href="index.html#faq">FAQ</a></li>
+                            <li><a href="index.html#team">Team</a></li>
                         </ul>
                     </nav>
 
@@ -263,7 +207,7 @@
                     <div class="footer-col footer-legal-block">
                         <h4 class="footer-col-title">Legal</h4>
                         <ul>
-                            <li><a href="../placeholder.html">Terms of Service</a></li>
+                            <li><a href="placeholder.html">Terms of Service</a></li>
                         </ul>
                     </div>
                 </div>
@@ -271,8 +215,8 @@
             <div class="footer-bottom">
                 <div class="container footer-bottom-container">
                     <p class="footer-bottom-copy">
-                        &copy; <span id="current-year"></span> Arsenic
-                        Development. All rights reserved.
+                        &copy; <span id="current-year"></span> Arsenic Development.
+                        All rights reserved.
                     </p>
                     <div class="footer-bottom-links">
                         <a
@@ -302,7 +246,6 @@
             </div>
         </footer>
 
-        <script src="../script.js"></script>
-        <script src="skin-grabber.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>
