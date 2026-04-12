@@ -135,8 +135,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const isSkinGrabberPage =
     document.body?.classList?.contains("page-skingrabber") ?? false;
+  const isProtectedPage =
+    document.body?.classList?.contains("page-protected") ?? false;
 
-  if (isSkinGrabberPage) {
+  if (isSkinGrabberPage || isProtectedPage) {
     const stop = (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -148,6 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("paste", stop, { capture: true });
     document.addEventListener("dragstart", stop, { capture: true });
     document.addEventListener("selectstart", stop, { capture: true });
+  }
+
+  // Clean up URLs - remove .html extension
+  if (window.history.replaceState && window.location.pathname.endsWith('.html')) {
+    const cleanPath = window.location.pathname.replace(/\.html$/, '');
+    window.history.replaceState({}, '', cleanPath + window.location.search + window.location.hash);
   }
 
   const discordInviteCode = "BewvqAe3jb";

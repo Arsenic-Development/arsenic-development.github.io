@@ -188,20 +188,24 @@
 }
 
 @layer components {
-    .page-skingrabber {
+    .page-skingrabber,
+    .page-protected {
         -webkit-user-select: none;
         user-select: none;
         -webkit-user-drag: none;
     }
 
-    .page-skingrabber img {
+    .page-skingrabber img,
+    .page-protected img {
         -webkit-user-drag: none;
         user-drag: none;
         pointer-events: none;
     }
 
     .page-skingrabber input,
-    .page-skingrabber button {
+    .page-skingrabber button,
+    .page-protected input,
+    .page-protected button {
         -webkit-user-select: auto;
         user-select: auto;
     }
